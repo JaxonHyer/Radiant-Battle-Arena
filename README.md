@@ -1,5 +1,7 @@
 # Radiant: Battle Arena — Learn More site
 
+# SITE AND GAME STILL IN PROTOTYPING IGNORE TILL RELEASE 1
+
 Static HTML/CSS/JS site for the Unreal Engine 5.8 Stormlight Archive fan game. No build step, no framework — served straight from `gh-pages`.
 
 ## Tweaking the site
