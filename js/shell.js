@@ -51,7 +51,9 @@ function renderShell() {
     </header>
   `);
 
-  const footerLinks = SHELL_FOOTER_LINKS
+  const links = SHELL_FOOTER_LINKS.slice();
+  if (CFG.REPORT_SHOW) links.push({ label: "Report content", href: "Credits/index.html#report" });
+  const footerLinks = links
     .map(l => `<a href="${/^https?:/.test(l.href) ? l.href : url(l.href)}">${l.label}</a>`)
     .join(" &nbsp;·&nbsp; ");
 

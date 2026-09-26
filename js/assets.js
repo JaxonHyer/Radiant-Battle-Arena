@@ -55,6 +55,7 @@ const ASSETS_FOLDER_TEXT = "Browse files"; // Used when the path is a folder, no
       <div class="spoiler-note" style="margin:20px 0">
         <strong>Non-commercial use only.</strong> ${esc(d.license)}
         ${d.licenseUrl ? ` <a href="${d.licenseUrl}" target="_blank" rel="noopener">Read the fan art policy</a>.` : ""}
+        ${C.REPORT_SHOW ? ` <a href="${u("Credits/index.html#report")}">Report an asset</a>.` : ""}
       </div>` : "";
 
     document.getElementById("page-root").innerHTML = `<div class="wrap">

@@ -59,6 +59,18 @@ const PAGE_DATE_STYLE   = { year: "numeric", month: "short", day: "numeric" }; /
 
   window.renderCredits = async function () {
     const d = await get(PAGE_CREDITS_FILE);
+
+    const report = C.REPORT_SHOW ? `
+      <div class="panel" id="report" style="border-color:rgba(224,178,92,.35);margin-top:16px">
+        <h3 style="margin-top:0">${esc(C.REPORT_TITLE)}</h3>
+        <p class="lede">${esc(C.REPORT_BODY)}</p>
+        <div class="btn-row" style="justify-content:flex-start;margin-top:14px">
+          <a class="btn" href="mailto:${esc(C.REPORT_EMAIL)}?subject=${encodeURIComponent("Content report — " + C.SITE_TITLE)}">Email ${esc(C.REPORT_EMAIL)}</a>
+          ${C.REPORT_GITHUB ? `<a class="btn ghost" href="${C.REPORT_GITHUB}" target="_blank" rel="noopener">Open an issue on GitHub</a>` : ""}
+        </div>
+        ${C.REPORT_RESPONSE ? `<p class="meta" style="margin-top:12px">${esc(C.REPORT_RESPONSE)}</p>` : ""}
+      </div>` : "";
+
     document.getElementById("page-root").innerHTML = `<div class="wrap">
       <div class="hero" style="text-align:left">
         <p class="section-label">Credits & Legal</p>
@@ -69,6 +81,7 @@ const PAGE_DATE_STYLE   = { year: "numeric", month: "short", day: "numeric" }; /
         <p class="lede">${esc(C.LEGAL_DISCLAIMER)}</p>
         <p class="lede">${esc(C.LEGAL_LICENSE)}</p>
       </div>
+      ${report}
       ${d.sections.map(s => `
         <section class="reveal">
           <h2>${esc(s.title)}</h2>
