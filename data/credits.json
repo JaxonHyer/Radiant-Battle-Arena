@@ -1,0 +1,32 @@
+{
+  "note": "Add every third-party asset here. 'license' and 'url' are shown verbatim, so paste exactly what the asset requires for attribution.",
+  "sections": [
+    {
+      "title": "Engine & tools",
+      "entries": [
+        { "name": "Unreal Engine 5.8", "author": "Epic Games", "license": "Unreal Engine EULA", "url": "https://www.unrealengine.com/" },
+        { "name": "Diversion", "author": "Diversion", "license": "Version control", "url": "https://www.diversion.dev/" }
+      ]
+    },
+    {
+      "title": "Site assets",
+      "entries": [
+        { "name": "Windrunner and Skybreaker glyphs", "author": "Original designs made for this project", "license": "CC BY-SA 4.0", "url": "" },
+        { "name": "Game logo", "author": "AI-generated for this project", "license": "CC BY-SA 4.0", "url": "" }
+      ]
+    },
+    {
+      "title": "Quoted text",
+      "entries": [
+        { "name": "The Coppermind article text", "author": "17th Shard", "license": "CC BY-NC-ND 4.0 — quoted verbatim with attribution", "url": "https://coppermind.net/wiki/Coppermind:Copyrights" },
+        { "name": "Quotations from the novels", "author": "Brandon Sanderson / Dragonsteel Entertainment", "license": "Short excerpts quoted under fair use", "url": "https://www.brandonsanderson.com/" }
+      ]
+    },
+    {
+      "title": "Game assets",
+      "entries": [
+        { "name": "Add CC-BY assets here", "author": "Author name", "license": "CC BY 4.0", "url": "" }
+      ]
+    }
+  ]
+}

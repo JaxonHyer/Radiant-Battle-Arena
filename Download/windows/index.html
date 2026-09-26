@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download</title>
+<link rel="stylesheet" href="../../css/site.css">
+<script src="../../GlobalSiteConfig.js"></script>
+</head>
+<body>
+
+<!-- The ONLY thing that differs between OS pages: -->
+<script>const THIS_OS = "windows";</script>
+
+<main id="dl-root"></main>
+<script src="../../js/shell.js"></script>
+<script src="../../js/download.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => renderDownloadOs(THIS_OS));</script>
+</body>
+</html>

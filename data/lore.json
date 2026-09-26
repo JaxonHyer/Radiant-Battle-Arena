@@ -1,0 +1,75 @@
+{
+  "title": "What is the Stormlight Archive?",
+  "intro": "The Stormlight Archive is a fantasy series by Brandon Sanderson, set on a world called Roshar. Radiant: Battle Arena borrows its magic, not its plot. This page is a short orientation for players who have never read the books — general lore is drawn from across the series, but characters and events are only discussed up to Words of Radiance.",
+  "sections": [
+    {
+      "id": "roshar",
+      "title": "Roshar",
+      "body": [
+        "Roshar is a world shaped by its weather. Enormous storms called highstorms sweep across the continent on a rough schedule, scouring everything in their path, and life there has evolved around them — rock buds that close up, shells instead of bark, cities built in the lee of cliffs.",
+        "The storms are not only destructive. They carry the energy that powers the world's magic, which makes them the single most important fact of life on Roshar."
+      ],
+      "quotes": []
+    },
+    {
+      "id": "stormlight",
+      "title": "Stormlight",
+      "body": [
+        "Stormlight is the raw power the highstorms bring. Gemstones left out during a storm absorb it and glow afterwards, which is why gem-set spheres serve as both lamps and money.",
+        "A person can breathe Stormlight in and use it to fuel supernatural abilities, heal wounds, and go without food or sleep. It does not last: it escapes from a person in minutes, visibly steaming off them the whole time. That constant leak is the pressure every Surgebinder lives under, and it is the mechanic the game is built around."
+      ],
+      "quotes": [
+        {
+          "text": "Honor's power, during a storm, is concentrated in one place. It pierces all three realms and brings Physical, Cognitive, and Spiritual together momentarily in one. The gemstones, exposed to the wonder of the Spiritual Realm, are lit by the infinite power there.",
+          "source": "The Stormfather, Oathbringer — via The Coppermind, \"Stormlight\"",
+          "url": "https://coppermind.net/wiki/Stormlight",
+          "spoiler": true
+        },
+        {
+          "text": "If you looked deeply into a stone, you could see the Light shifting with the chaotic pattern of a blowing storm. It was not calm inside. Not by a wind or a whisper.",
+          "source": "Kaladin, Words of Radiance — via The Coppermind, \"Stormlight\"",
+          "url": "https://coppermind.net/wiki/Stormlight",
+          "spoiler": false
+        }
+      ]
+    },
+    {
+      "id": "spren",
+      "title": "Spren",
+      "body": [
+        "Spren are living pieces of the world's ideas. Small ones appear wherever the thing they represent happens — flamespren around a fire, windspren riding a gust, fearspren welling up around a frightened person.",
+        "Some spren are far more than that: aware, intelligent, and able to speak. When one of those bonds a human being, the pair share power. That bond is what makes a Knight Radiant."
+      ],
+      "quotes": []
+    },
+    {
+      "id": "radiants",
+      "title": "The Knights Radiant",
+      "body": [
+        "The Knights Radiant were an order of Surgebinders who protected Roshar during its ancient wars. They were organised into ten Orders, each defined by the powers it could access and the oaths its members swore.",
+        "A Radiant does not simply receive power. They speak Ideals — progressively harder promises about how they intend to live — and each one spoken deepens the bond and unlocks more of what the spren can give. The First Ideal is shared by all ten Orders: Life before death, strength before weakness, journey before destination."
+      ],
+      "quotes": [
+        {
+          "text": "The Knights Radiant comprised ten different Orders, some of which had several hundred members. Each Order had two Surges associated with it, and each Surge was used by two different Orders.",
+          "source": "The Coppermind, \"Knights Radiant\"",
+          "url": "https://coppermind.net/wiki/Knights_Radiant",
+          "spoiler": false
+        }
+      ]
+    },
+    {
+      "id": "surges",
+      "title": "Surges and Surgebinding",
+      "body": [
+        "The ten Surges are the fundamental forces a Radiant can manipulate: Adhesion, Gravitation, Division, Abrasion, Progression, Illumination, Transformation, Transportation, Cohesion and Tension. Burning Stormlight is how you use them.",
+        "Each Order gets two Surges, and each Surge is shared by exactly two Orders. Windrunners and Skybreakers both command Gravitation — which is why both of them fly, and why they are the two Orders playable at launch. Their second Surges pull them in opposite directions: the Windrunner's Adhesion binds things together, the Skybreaker's Division tears them apart."
+      ],
+      "quotes": []
+    }
+  ],
+  "further": [
+    { "label": "The Coppermind (17th Shard wiki)", "url": "https://coppermind.net/wiki/Stormlight_Archive" },
+    { "label": "Brandon Sanderson's official site", "url": "https://www.brandonsanderson.com/" }
+  ]
+}

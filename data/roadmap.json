@@ -1,0 +1,35 @@
+{
+  "note": "Set status to 'done', 'active' or 'planned'.",
+  "milestones": [
+    {
+      "title": "Gravitation prototype",
+      "status": "done",
+      "target": "Complete",
+      "items": ["Hover on double jump", "Lashing with camera steering", "Intensity ramp on W / S", "A and D dodges"]
+    },
+    {
+      "title": "Stormlight economy",
+      "status": "active",
+      "target": "In progress",
+      "items": ["Passive drain", "Sphere pickups", "Highstorm recharge event", "HUD bar polish"]
+    },
+    {
+      "title": "Windrunner — Adhesion kit",
+      "status": "planned",
+      "target": "TBD",
+      "items": ["Design pass", "Full Lashing", "Reverse Lashing"]
+    },
+    {
+      "title": "Skybreaker — Division kit",
+      "status": "planned",
+      "target": "TBD",
+      "items": ["Design pass", "Division abilities"]
+    },
+    {
+      "title": "First public build",
+      "status": "planned",
+      "target": "TBD",
+      "items": ["Windows release", "macOS release", "Linux release", "System requirements published"]
+    }
+  ]
+}

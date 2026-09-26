@@ -1,0 +1,51 @@
+{
+  "note": "Free downloadable assets. Set usePreview to false for anything that won't render as an image (FBX, GLB, audio, archives) and a format badge is shown instead of a broken preview.",
+  "intro": "Free assets from the project, released for non-commercial fan use. Nothing here is official, nothing here is for sale, and none of it may be used commercially.",
+  "license": "Free for non-commercial fan use only. Credit appreciated. Commercial use is not permitted — Dragonsteel's fan art policy prohibits commercial use of AI-assisted fan work and of character/creature/symbol model files.",
+  "licenseUrl": "https://www.brandonsanderson.com/pages/fan-art-policy",
+  "categories": [
+    {
+      "title": "Characters",
+      "assets": [
+        {
+          "name": "Parshendi",
+          "description": "Parshendi character model. AI-assisted concept, exported from the project.",
+          "file": "assets/characters/Parshendi/",
+          "format": "FBX",
+          "size": "TBD",
+          "author": "AI-assisted, made for this project",
+          "preview": "",
+          "usePreview": false,
+          "aiGenerated": true
+        }
+      ]
+    },
+    {
+      "title": "Glyphs",
+      "assets": [
+        {
+          "name": "Windrunner glyph",
+          "description": "Original Windrunner emblem designed for this project. Not a copy of any official symbol.",
+          "file": "assets/glyphs/windrunner.png",
+          "format": "PNG",
+          "size": "1024 x 1024",
+          "author": "AI-assisted, made for this project",
+          "preview": "assets/glyphs/windrunner.png",
+          "usePreview": true,
+          "aiGenerated": true
+        },
+        {
+          "name": "Skybreaker glyph",
+          "description": "Original Skybreaker emblem designed for this project. Not a copy of any official symbol.",
+          "file": "assets/glyphs/skybreaker.png",
+          "format": "PNG",
+          "size": "1024 x 1024",
+          "author": "AI-assisted, made for this project",
+          "preview": "assets/glyphs/skybreaker.png",
+          "usePreview": true,
+          "aiGenerated": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "note": "20 authored questions; the quiz shows 10. 'probe' controls when a question can appear: 'any' = always eligible, 'windrunner'/'skybreaker' = only offered while the player is currently leaning that way. Each option's scores are added to the running total.",
+  "questions": [
+    {
+      "id": "q1", "probe": "any",
+      "text": "A fight breaks out in a crowded market. What pulls at you first?",
+      "options": [
+        { "text": "The people caught in the middle of it.", "scores": { "windrunner": 2 } },
+        { "text": "Who started it, and what they'll answer for.", "scores": { "skybreaker": 2 } }
+      ]
+    },
+    {
+      "id": "q2", "probe": "any",
+      "text": "You're handed command of a squad. Your first act is to…",
+      "options": [
+        { "text": "Learn every one of their names.", "scores": { "windrunner": 2 } },
+        { "text": "Write down the rules we will all be held to.", "scores": { "skybreaker": 2 } }
+      ]
+    },
+    {
+      "id": "q3", "probe": "any",
+      "text": "Which promise would be harder for you to break?",
+      "options": [
+        { "text": "A promise to a person.", "scores": { "windrunner": 2 } },
+        { "text": "A promise to a principle.", "scores": { "skybreaker": 2 } }
+      ]
+    },
+    {
+      "id": "q4", "probe": "any",
+      "text": "The law is wrong. Everyone can see it. You…",
+      "options": [
+        { "text": "Refuse to enforce it.", "scores": { "windrunner": 2 } },
+        { "text": "Enforce it, then work to change it.", "scores": { "skybreaker": 2 } }
+      ]
+    },
+    {
+      "id": "q5", "probe": "any",
+      "text": "Which failure would haunt you longer?",
+      "options": [
+        { "text": "Someone died because I wasn't fast enough.", "scores": { "windrunner": 2 } },
+        { "text": "Someone walked free because I wasn't certain enough.", "scores": { "skybreaker": 2 } }
+      ]
+    },
+    {
+      "id": "q6", "probe": "any",
+      "text": "You're airborne with Stormlight running low. One last Lashing. Spend it on…",
+      "options": [
+        { "text": "Catching the person falling below me.", "scores": { "windrunner": 2 } },
+        { "text": "Reaching the one who pushed them.", "scores": { "skybreaker": 2 } }
+      ]
+    },
+    {
+      "id": "q7", "probe": "any",
+      "text": "Pick the weapon you'd rather master.",
+      "options": [
+        { "text": "A spear — reach, control, a wall against a charge.", "scores": { "windrunner": 2 } },
+        { "text": "A blade that unmakes what it touches.", "scores": { "skybreaker": 2 } }
+      ]
+    },
+    {
+      "id": "q8", "probe": "any",
+      "text": "Your spren argues with you about a choice. You…",
+      "options": [
+        { "text": "Hear them out. The bond goes both ways.", "scores": { "windrunner": 2 } },
+        { "text": "Hold the line. I told them what I'd do.", "scores": { "skybreaker": 2 } }
+      ]
+    },
+
+    {
+      "id": "q9", "probe": "windrunner",
+      "text": "Protecting everyone isn't possible. You have to choose. Do you…",
+      "options": [
+        { "text": "Choose, and carry it.", "scores": { "windrunner": 2 } },
+        { "text": "Refuse to choose, and find a rule that decides for me.", "scores": { "skybreaker": 3 } }
+      ]
+    },
+    {
+      "id": "q10", "probe": "windrunner",
+      "text": "The person you swore to protect turns out to deserve punishment.",
+      "options": [
+        { "text": "I still stand in front of them.", "scores": { "windrunner": 3 } },
+        { "text": "I step aside. My oath never covered that.", "scores": { "skybreaker": 3 } }
+      ]
+    },
+    {
+      "id": "q11", "probe": "windrunner",
+      "text": "What does 'strength' mean to you?",
+      "options": [
+        { "text": "Being the one others can stand behind.", "scores": { "windrunner": 2 } },
+        { "text": "Being the one who doesn't bend.", "scores": { "skybreaker": 2 } }
+      ]
+    },
+    {
+      "id": "q12", "probe": "windrunner",
+      "text": "You lead from…",
+      "options": [
+        { "text": "The front, with them.", "scores": { "windrunner": 2 } },
+        { "text": "Above, watching for what they'll miss.", "scores": { "skybreaker": 1 } }
+      ]
+    },
+    {
+      "id": "q13", "probe": "windrunner",
+      "text": "Someone you saved does something terrible afterwards. Was saving them a mistake?",
+      "options": [
+        { "text": "No. What they did next is theirs, not mine.", "scores": { "windrunner": 3 } },
+        { "text": "Yes. I'm responsible for what I let into the world.", "scores": { "skybreaker": 3 } }
+      ]
+    },
+
+    {
+      "id": "q14", "probe": "skybreaker",
+      "text": "You follow a code. Who wrote it?",
+      "options": [
+        { "text": "I did — and I can rewrite it if I'm proven wrong.", "scores": { "windrunner": 2 } },
+        { "text": "Something larger than me. That's the point.", "scores": { "skybreaker": 3 } }
+      ]
+    },
+    {
+      "id": "q15", "probe": "skybreaker",
+      "text": "There's a loophole. Using it gets the right outcome.",
+      "options": [
+        { "text": "Feels like cheating. I'd rather win honestly.", "scores": { "windrunner": 2 } },
+        { "text": "The loophole is part of the law. Use it.", "scores": { "skybreaker": 3 } }
+      ]
+    },
+    {
+      "id": "q16", "probe": "skybreaker",
+      "text": "Mercy is…",
+      "options": [
+        { "text": "The whole point of having power.", "scores": { "windrunner": 3 } },
+        { "text": "A decision someone else already made, written into the sentence.", "scores": { "skybreaker": 3 } }
+      ]
+    },
+    {
+      "id": "q17", "probe": "skybreaker",
+      "text": "Another Radiant starts ruling a city by force. You…",
+      "options": [
+        { "text": "Try to reach them. They were one of us.", "scores": { "windrunner": 2 } },
+        { "text": "Stop them. That's exactly what we exist for.", "scores": { "skybreaker": 3 } }
+      ]
+    },
+    {
+      "id": "q18", "probe": "skybreaker",
+      "text": "You're certain you're right. How much does it matter that nobody agrees?",
+      "options": [
+        { "text": "A great deal. If everyone objects, I'm probably missing something.", "scores": { "windrunner": 2 } },
+        { "text": "Not at all.", "scores": { "skybreaker": 3 } }
+      ]
+    },
+
+    {
+      "id": "q19", "probe": "any",
+      "text": "Last one. Which sentence would you rather have said about you?",
+      "options": [
+        { "text": "\"They came back for us.\"", "scores": { "windrunner": 3 } },
+        { "text": "\"They kept their word. Perfectly.\"", "scores": { "skybreaker": 3 } }
+      ]
+    },
+    {
+      "id": "q20", "probe": "any",
+      "text": "Which is worse — anarchy, or tyranny?",
+      "options": [
+        { "text": "Tyranny. A boot on the neck is the thing I'd fly at.", "scores": { "windrunner": 2 } },
+        { "text": "Anarchy. Without order, everyone is prey.", "scores": { "skybreaker": 2 } }
+      ]
+    }
+  ],
+  "results": {
+    "windrunner": {
+      "title": "You are a Windrunner.",
+      "blurb": "You answered like someone who puts themselves between danger and other people. Windrunners bond honorspren, wield Adhesion and Gravitation, and live by a single idea: I will protect.",
+      "href": "Windrunner/index.html"
+    },
+    "skybreaker": {
+      "title": "You are a Skybreaker.",
+      "blurb": "You answered like someone who chooses a code and then actually keeps it. Skybreakers bond highspren, wield Gravitation and Division, and swear an oath to seek and administer justice.",
+      "href": "Skybreaker/index.html"
+    }
+  }
+}

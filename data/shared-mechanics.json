@@ -1,0 +1,45 @@
+{
+  "note": "Mechanics shared by every flying Order. This file is duplicated onto each Order page at runtime, so editing it here updates all Order pages at once.",
+  "sections": [
+    {
+      "id": "stormlight",
+      "title": "Stormlight",
+      "showStormbar": true,
+      "body": [
+        "Each Order of Knight Radiant fuels their powers by consuming Stormlight stored by Spheres, the main currency on Roshar, and collected during Highstorms, large dangerous storms that roam the planet.",
+        "Stormlight is represented by the blue bar in the top left corner of the screen and leaks from the player naturally. Stormlight will be one of your most valuable resources while exploring Roshar."
+      ],
+      "quotes": [
+        {
+          "text": "A person can only hold Stormlight for a few minutes at most, while a gemstone will hold it for several days -- the ones used as currency glow for about a week, while bigger gems last a while longer.",
+          "source": "The Coppermind, \"Stormlight\"",
+          "url": "https://coppermind.net/wiki/Stormlight",
+          "spoiler": false
+        },
+        {
+          "text": "Stormlight appears as luminescent white vapor with a faint blue tint. When free, it behaves similarly to smoke, dissipating in puffs and leaving trails when its source moves.",
+          "source": "The Coppermind, \"Stormlight\"",
+          "url": "https://coppermind.net/wiki/Stormlight",
+          "spoiler": false
+        }
+      ]
+    },
+    {
+      "id": "gravitation",
+      "title": "Gravitation",
+      "showControls": true,
+      "body": [
+        "The two Orders that control the Surge of Gravitation are the Windrunners and Skybreakers. Gravitation lets the Surgebinder change the direction of gravity for themselves, letting them Lash themselves to shoot off into the sky.",
+        "To initiate a Lashing, double-jump to start Hovering, then Sprint to start Lashing in the direction of the camera. Increase your Lashing intensity by tapping W on a keyboard or flicking the left controller joystick forward. In contrast, the intensity of a Lashing can be decreased by flicking the left joystick back or tapping S. To steer while Lashing, move the direction of the camera. To dodge left and right, use A and D, or move the joystick left to right on your controller."
+      ],
+      "controls": [
+        { "id": "hover",     "action": "Begin Hovering",        "keys": ["Space", "Space"], "pad": "A / X (double tap)", "highlight": ["Space"],     "padParts": ["face"] },
+        { "id": "lash",      "action": "Start Lashing",          "keys": ["Shift"],          "pad": "Left Stick Click",   "highlight": ["Shift"],     "padParts": ["lstick"] },
+        { "id": "intensify", "action": "Increase intensity",     "keys": ["W"],              "pad": "Left Stick forward", "highlight": ["W"],         "padParts": ["lstick"] },
+        { "id": "weaken",    "action": "Decrease intensity",     "keys": ["S"],              "pad": "Left Stick back",    "highlight": ["S"],         "padParts": ["lstick"] },
+        { "id": "steer",     "action": "Steer",                  "keys": ["Mouse"],          "pad": "Right Stick",        "highlight": [],            "padParts": ["rstick"] },
+        { "id": "dodge",     "action": "Dodge left / right",     "keys": ["A", "D"],         "pad": "Left Stick left/right", "highlight": ["A", "D"], "padParts": ["lstick"] }
+      ]
+    }
+  ]
+}
