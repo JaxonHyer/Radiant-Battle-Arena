@@ -16,9 +16,13 @@ Fly on stolen gravity. Burn Stormlight to stay alive. Fight as a Knight Radiant.
 
 ## What is this?
 
-Radiant: Battle Arena is a fan-made arena combat game set on **Roshar**, the world of Brandon Sanderson's *The Stormlight Archive*. You play as a Knight Radiant — a warrior bonded to a living spren, able to bend fundamental forces by burning Stormlight.
+Radiant: Battle Arena is a fan-made action game set on **Roshar**, the world of Brandon Sanderson's *The Stormlight Archive*. Play solo or add a second local player in split-screen. You play as Knights Radiant — warriors bonded to living spren, able to bend fundamental forces by burning Stormlight. Online multiplayer is not planned.
+
+Two modes are planned. **Arena** supports player-versus-player combat, selectable enemy waves, and endless survival; in enemy modes, an optional Friendly Fire setting treats the other player as an enemy for every type of damage. **Adventure** is planned around replayable, quest-based levels with separate player progression and shared level unlocks. Its release timing is not yet locked.
 
 The hook is that **your power is a countdown**. Stormlight doesn't sit in a tank waiting for you. It leaks out of you constantly, glowing off your skin, whether you spend it or not. Every second airborne is a second closer to falling. You fight, then you scramble for spheres, then you fight again.
+
+> **Development status:** only the Gravitation prototype is currently implemented. Combat, game modes, progression, Adhesion, and Division are planned features. There is no public build yet.
 
 > *"A person can only hold Stormlight for a few minutes at most."*
 > — [The Coppermind](https://coppermind.net/wiki/Stormlight)
@@ -51,7 +55,11 @@ More Orders may follow. This is a solo project, so two is what gets finished fir
 | Steer | Mouse | Right stick |
 | Dodge left / right | `A` / `D` | Left stick left / right |
 
-**Adhesion** (Windrunner) and **Division** (Skybreaker) are in development.
+**Adhesion** (Windrunner) is planned around a ranged immobilizing shot and a Wind Bubble that reduces drag, increases flight speed, and pushes objects away.
+
+**Division** (Skybreaker) is planned around an airborne-capable Division Bubble that fractures Chaos-enabled objects and a grounded Division Touch that obliterates objects or heavily damages enemies.
+
+Combat is planned for the ground and air, with shields, hammers, spears, two-handed swords, weapon combos, and mid-combo weapon switching. The player-character animation foundation comes from Epic Games' [Game Animation Sample Project](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-animation-sample-project-in-unreal-engine) and its Motion Matching system.
 
 ## Status
 

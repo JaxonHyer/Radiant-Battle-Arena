@@ -40,10 +40,13 @@ const DL_UNKNOWN_PAGE    = "Download/supported/index.html"; // Where to send vis
   window.renderDownloadIndex = function () {
     const root = document.getElementById("dl-root");
     const os = detectOs();
+    const anyReleased = Object.values(C.DOWNLOADS).some(download => download.operatingSystemReleased);
     const skip = DL_REMEMBER_CHOICE && sessionStorage.getItem("rba-dl-manual") === "1";
-    const willRedirect = DL_AUTO_REDIRECT && !skip;
+    const willRedirect = anyReleased && DL_AUTO_REDIRECT && !skip;
 
-    let status = "Choose your platform.";
+    let status = anyReleased
+      ? "Choose your platform."
+      : "There is no public build yet. Gravitation is the only implemented gameplay system; the platforms below remain development targets.";
     if (willRedirect) {
       status = os
         ? `Detected <strong>${esc(C.DOWNLOADS[os].label)}</strong> — taking you there…`
@@ -52,9 +55,10 @@ const DL_UNKNOWN_PAGE    = "Download/supported/index.html"; // Where to send vis
 
     root.innerHTML = `<div class="wrap">
       <div class="hero" style="text-align:left">
-        <p class="section-label">Download</p>
-        <h1 style="text-align:left">Get the build</h1>
+        <p class="section-label">${anyReleased ? "Download" : "Build status"}</p>
+        <h1 style="text-align:left">${anyReleased ? "Get the build" : "No public build yet"}</h1>
         <p class="lede" id="dl-detect">${status}</p>
+        ${anyReleased ? "" : `<div class="btn-row left-actions"><a class="btn" href="${u("Roadmap/index.html")}">View roadmap</a><a class="btn ghost" href="${u("Gameplay/index.html")}">Explore gameplay</a></div>`}
       </div>
       <div class="grid three">${Object.keys(C.DOWNLOADS).map(osCard).join("")}</div>
       <section>

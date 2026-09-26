@@ -1,0 +1,83 @@
+{
+  "note": "Gameplay plans supplied by the developer. Only Gravitation is currently implemented; planned features must not be presented as complete.",
+  "current": {
+    "title": "Current prototype",
+    "status": "implemented",
+    "body": "Gravitation is the current playable foundation: hover, Lash into the air, steer with the camera, change Lashing intensity, and dodge while airborne. The modes and combat systems below are planned and still subject to change."
+  },
+  "modes": [
+    {
+      "name": "Arena",
+      "status": "planned for v1",
+      "body": "Enter an arena alone or with a second local player. Fight each other with no enemies, take on selectable enemy waves, or attempt an endless survival run. Selectable runs end when every wave is cleared; endless runs test how long you can survive.",
+      "details": [
+        "Solo or two-player local split-screen",
+        "Player-versus-player and enemy-wave variants",
+        "Adventure save files provide the players' resources",
+        "Friendly Fire makes the other player behave as an enemy target for every type of damage"
+      ]
+    },
+    {
+      "name": "Adventure",
+      "status": "planned — release timing not locked",
+      "body": "Choose replayable, quest-based levels that are usually built around battles from The Stormlight Archive. Completing levels or reaching achievements such as the Third Ideal unlocks more levels. Objectives, victory conditions, failure conditions, respawning, and bosses can vary by level.",
+      "details": [
+        "Solo or two-player local split-screen",
+        "Separate player progression with shared level unlocks",
+        "A level-selection screen and replayable quests",
+        "An Honorblade test level before an Order is chosen"
+      ],
+      "spoiler": true
+    }
+  ],
+  "systems": [
+    {
+      "name": "Ground and aerial melee",
+      "status": "planned for v1",
+      "body": "Combat is planned for both the ground and the air. Players will be able to continue swinging a sword, hammer, or spear while airborne. Combos can change weapon mid-sequence: switch weapons between swings and continue the combo with the newly equipped weapon. Shields are excluded from mid-combo switching. Bows remain undecided."
+    },
+    {
+      "name": "Weapons and Ideals",
+      "status": "planned for v1",
+      "body": "The planned weapon set includes a shield, hammer, spear, and two-handed sword. Shardblades become available at or above the Third Ideal."
+    },
+    {
+      "name": "Health, Stormlight, and respawning",
+      "status": "planned for v1",
+      "body": "Players begin with ten hearts, including support for half-heart damage. Held Stormlight heals damage. A defeated player respawns until the current level's victory or failure condition is reached, but loses all held Stormlight on respawn."
+    },
+    {
+      "name": "Local multiplayer only",
+      "status": "planned for v1",
+      "body": "A second player can join locally for split-screen play in Arena or Adventure. Both players may choose the same Order. Online multiplayer is explicitly not planned."
+    }
+  ],
+  "animation": {
+    "title": "Motion Matching animation",
+    "status": "foundation",
+    "body": "Radiant: Battle Arena uses Epic Games' Game Animation Sample Project as the animation foundation for its player character. That project drives responsive traversal animation with Unreal Engine's Motion Matching system.",
+    "documentationUrl": "https://dev.epicgames.com/documentation/en-us/unreal-engine/game-animation-sample-project-in-unreal-engine"
+  },
+  "faq": [
+    {
+      "question": "Can I play alone?",
+      "answer": "Yes. The plan is for both Arena and Adventure to support solo play, with an optional second local player."
+    },
+    {
+      "question": "Is there online multiplayer?",
+      "answer": "No. Multiplayer is local split-screen only, and online multiplayer is not planned."
+    },
+    {
+      "question": "Can both players choose the same Order?",
+      "answer": "Yes. The two players are not required to choose different Orders."
+    },
+    {
+      "question": "How does Friendly Fire work?",
+      "answer": "In enemy-wave Arena play, enabling Friendly Fire treats the other player as an enemy character. Every type of damage can affect them."
+    },
+    {
+      "question": "What is playable now?",
+      "answer": "Only the Gravitation prototype is currently implemented. Combat, game modes, progression, and the other Surges are planned features. There is no public build yet."
+    }
+  ]
+}

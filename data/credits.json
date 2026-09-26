@@ -5,6 +5,8 @@
       "title": "Engine & tools",
       "entries": [
         { "name": "Unreal Engine 5.8", "author": "Epic Games", "license": "Unreal Engine EULA", "url": "https://www.unrealengine.com/" },
+        { "name": "Game Animation Sample Project", "author": "Epic Games", "license": "Used under the applicable Epic Games / Unreal Engine terms", "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/game-animation-sample-project-in-unreal-engine" },
+        { "name": "Motion Matching", "author": "Epic Games / Unreal Engine", "license": "Animation system used by the Game Animation Sample Project", "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/motion-matching-in-unreal-engine" },
         { "name": "Diversion", "author": "Diversion", "license": "Version control", "url": "https://www.diversion.dev/" }
       ]
     },

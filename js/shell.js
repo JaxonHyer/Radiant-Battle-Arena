@@ -41,12 +41,19 @@ function buildNav() {
 
 function renderShell() {
   const [pre, post] = CFG.SITE_TITLE.split(SHELL_BRAND_SPLIT);
+  const main = document.querySelector("main");
+  if (main && !main.id) main.id = "page-content";
+  const mainId = main ? main.id : "page-content";
 
   document.body.insertAdjacentHTML("afterbegin", `
+    <a class="skip-link" href="#${mainId}">Skip to content</a>
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href="${url("index.html")}">${pre}${post ? `<span>${SHELL_BRAND_SPLIT}${post}</span>` : ""}</a>
-        <nav class="site-nav">${buildNav()}</nav>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-navigation" aria-label="Main navigation">${buildNav()}</nav>
       </div>
     </header>
   `);
@@ -72,6 +79,49 @@ function renderShell() {
   document.querySelectorAll(".site-nav a").forEach(a => {
     if (isCurrent(a.getAttribute("href"))) a.setAttribute("aria-current", "page");
   });
+
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".site-nav");
+  const setOpen = open => {
+    document.body.classList.toggle("nav-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+  };
+  toggle.addEventListener("click", () => setOpen(!document.body.classList.contains("nav-open")));
+  nav.addEventListener("click", event => { if (event.target.closest("a")) setOpen(false); });
+  document.addEventListener("keydown", event => { if (event.key === "Escape") setOpen(false); });
+  document.addEventListener("click", event => {
+    if (document.body.classList.contains("nav-open") && !event.target.closest(".site-header")) setOpen(false);
+  });
+  matchMedia("(min-width: 901px)").addEventListener("change", event => { if (event.matches) setOpen(false); });
+}
+
+function initMetadata() {
+  const description = document.querySelector('meta[name="description"]')?.content || CFG.SITE_DESCRIPTION;
+  const values = {
+    "og:title": document.title,
+    "og:description": description,
+    "og:type": "website",
+    "og:url": location.href,
+    "twitter:card": CFG.SITE_SOCIAL_IMAGE ? "summary_large_image" : "summary"
+  };
+  if (CFG.SITE_SOCIAL_IMAGE) {
+    values["og:image"] = url(CFG.SITE_SOCIAL_IMAGE);
+    values["twitter:image"] = url(CFG.SITE_SOCIAL_IMAGE);
+  }
+  Object.entries(values).forEach(([name, content]) => {
+    const property = name.startsWith("og:") ? "property" : "name";
+    const meta = document.createElement("meta");
+    meta.setAttribute(property, name);
+    meta.content = content;
+    document.head.appendChild(meta);
+  });
+  if (CFG.SITE_FAVICON) {
+    const icon = document.createElement("link");
+    icon.rel = "icon";
+    icon.href = url(CFG.SITE_FAVICON);
+    document.head.appendChild(icon);
+  }
 }
 
 function initSpoilers() {
@@ -117,6 +167,7 @@ window.rbaRefresh = function () { initSpoilers(); initReveal(); };
 document.title = document.title
   ? `${document.title} · ${CFG.SITE_TITLE}`
   : CFG.SITE_TITLE;
+initMetadata();
 
 document.addEventListener("DOMContentLoaded", () => {
   renderShell();

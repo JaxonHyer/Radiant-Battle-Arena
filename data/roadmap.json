@@ -1,35 +1,41 @@
 {
-  "note": "Set status to 'done', 'active' or 'planned'.",
+  "note": "This roadmap separates implemented work from plans. Planned scope may change during development.",
   "milestones": [
     {
       "title": "Gravitation prototype",
       "status": "done",
-      "target": "Complete",
-      "items": ["Hover on double jump", "Lashing with camera steering", "Intensity ramp on W / S", "A and D dodges"]
+      "target": "Implemented",
+      "items": ["Hover on double jump", "Lashing with camera steering", "Lashing intensity controls", "Airborne dodging"]
     },
     {
-      "title": "Stormlight economy",
-      "status": "active",
-      "target": "In progress",
-      "items": ["Passive drain", "Sphere pickups", "Highstorm recharge event", "HUD bar polish"]
-    },
-    {
-      "title": "Windrunner — Adhesion kit",
+      "title": "Core combat and survival",
       "status": "planned",
-      "target": "TBD",
-      "items": ["Design pass", "Full Lashing", "Reverse Lashing"]
+      "target": "Planned for v1",
+      "items": ["Ground and aerial melee", "Weapon combos and mid-combo switching", "Ten-heart health system", "Stormlight healing", "Respawning with Stormlight loss"]
     },
     {
-      "title": "Skybreaker — Division kit",
+      "title": "Local play and Arena",
       "status": "planned",
-      "target": "TBD",
-      "items": ["Design pass", "Division abilities"]
+      "target": "Planned for v1",
+      "items": ["Solo play", "Optional two-player split-screen", "Player-versus-player Arena", "Selectable enemy waves", "Endless survival", "Friendly Fire toggle"]
+    },
+    {
+      "title": "Windrunner and Skybreaker kits",
+      "status": "planned",
+      "target": "Planned for v1",
+      "items": ["Adhesion shot", "Wind Bubble", "Division Bubble", "Division Touch", "Same-Order player selection"]
+    },
+    {
+      "title": "Adventure",
+      "status": "planned",
+      "target": "Release timing not locked",
+      "items": ["Level-selection screen", "Replayable quest levels", "Shared level unlocks", "Separate player progression", "Level-specific victory and failure conditions", "Boss encounters"]
     },
     {
       "title": "First public build",
       "status": "planned",
       "target": "TBD",
-      "items": ["Windows release", "macOS release", "Linux release", "System requirements published"]
+      "items": ["Finalize initial platform support", "Publish system requirements", "Prepare release downloads"]
     }
   ]
 }

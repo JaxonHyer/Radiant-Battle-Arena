@@ -4,11 +4,14 @@
    ========================================================================== */
 
 const SITE_TITLE          = "Radiant: Battle Arena";              // Game name, used in <title> and header
-const SITE_TAGLINE        = "A Stormlight Archive fan game built in Unreal Engine 5.8";
+const SITE_TAGLINE        = "Fight, fly, and survive as a Knight Radiant — solo or in local split-screen.";
+const SITE_DESCRIPTION    = "A solo or two-player local split-screen Stormlight Archive fan game with Adventure and Arena modes, built in Unreal Engine 5.8.";
 const SITE_LOGO_PNG       = "assets/logo.png";                    // 2D logo (PNG/JPG). Path is relative to site root
 const SITE_LOGO_GLB       = "assets/logo.glb";                    // 3D logo. Set to "" to disable entirely
 const SITE_LOGO_GLB_ON    = false;                                // true = load 3D logo on desktop, false = PNG only
 const SITE_LOGO_GLB_MAXMB = 5;                                    // Size budget reminder for the GLB (not enforced)
+const SITE_FAVICON        = "";                                   // Root-relative icon path; set after the final logo is added
+const SITE_SOCIAL_IMAGE   = "";                                   // Root-relative Open Graph image; set after the final logo is added
 const SITE_ENGINE         = "Unreal Engine 5.8";                  // Engine credit shown in footer + credits
 const SITE_SPOILER_LIMIT  = "Words of Radiance";                  // Characters/timeline are only discussed up to this book
 const SITE_SPOILERS_ON    = false;                                // Default spoiler-blur state: false = blurred/hidden
@@ -71,8 +74,9 @@ const ORDERS = [
    NAVIGATION — edit freely; `orders: true` expands into one link per ORDER.
    -------------------------------------------------------------------------- */
 const NAV_LINKS = [
-  { label: "Home",  href: "index.html" },
-  { label: "Lore",  href: "StormlightArchiveLore/index.html" },
+  { label: "Home",     href: "index.html" },
+  { label: "Gameplay", href: "Gameplay/index.html" },
+  { label: "Lore",     href: "StormlightArchiveLore/index.html" },
   { orders: true },
   { label: "Quiz",     href: "Quiz/index.html" },
   { label: "Download", href: "Download/index.html" },
@@ -115,8 +119,8 @@ function siteUrl(path) {
 }
 
 window.RBA_CONFIG = {
-  SITE_TITLE, SITE_TAGLINE, SITE_LOGO_PNG, SITE_LOGO_GLB, SITE_LOGO_GLB_ON, SITE_LOGO_GLB_MAXMB,
-  SITE_ENGINE, SITE_SPOILER_LIMIT, SITE_SPOILERS_ON, SITE_BASE,
+  SITE_TITLE, SITE_TAGLINE, SITE_DESCRIPTION, SITE_LOGO_PNG, SITE_LOGO_GLB, SITE_LOGO_GLB_ON, SITE_LOGO_GLB_MAXMB,
+  SITE_FAVICON, SITE_SOCIAL_IMAGE, SITE_ENGINE, SITE_SPOILER_LIMIT, SITE_SPOILERS_ON, SITE_BASE,
   DOWNLOADS, SYSTEM_REQUIREMENTS, ORDERS, NAV_LINKS,
   LEGAL_DISCLAIMER, LEGAL_LICENSE, siteUrl,
   REPORT_SHOW, REPORT_TITLE, REPORT_EMAIL, REPORT_GITHUB, REPORT_BODY, REPORT_RESPONSE

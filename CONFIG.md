@@ -10,13 +10,13 @@ Work top to bottom. Items marked **required** should be done before you share th
 
 | # | Task | File | Status |
 | --- | --- | --- | --- |
-| 1 | **Required.** Set a real takedown contact | `GlobalSiteConfig.js` → `REPORT_EMAIL` | ⬜ placeholder |
-| 2 | **Required.** Add the logo image | `assets/logo.png` | ⬜ missing |
+| 1 | **Required.** Set a real takedown contact | `GlobalSiteConfig.js` → `REPORT_EMAIL` | ✅ set |
+| 2 | **Required.** Add the final logo image | `assets/logo.png` | ⬜ being polished |
 | 3 | Enable GitHub Pages on `gh-pages` / root | repo Settings → Pages | ⬜ |
 | 4 | Point download links at your release host | `GlobalSiteConfig.js` → `DOWNLOADS` | ⬜ |
 | 5 | Reveal a platform when you ship it | `operatingSystemReleased: true` | ⬜ |
 | 6 | Fill in system requirements | `SYSTEM_REQUIREMENTS` | ⬜ all TBD |
-| 7 | Write the Adhesion / Division ability kits | `data/orders/*.json` | ⬜ in development |
+| 7 | Refine and implement the planned Adhesion / Division kits | `data/orders/*.json` | ⬜ planned |
 | 8 | Add your CC-BY asset credits | `data/credits.json` | ⬜ |
 
 ---
@@ -64,10 +64,13 @@ The single file for site-wide values.
 | `SITE_TITLE` | Game name — used in the header, page titles, footer |
 | `SITE_TAGLINE` | One-line description under the hero title |
 | `SITE_ENGINE` | Engine credit in the footer and credits page |
+| `SITE_DESCRIPTION` | Default description used by social metadata when a page has no specific description |
 | `SITE_LOGO_PNG` | Hero logo path. If the file is missing, the image removes itself rather than showing a broken icon |
 | `SITE_LOGO_GLB` | Optional 3D logo |
 | `SITE_LOGO_GLB_ON` | `true` loads the 3D logo on desktop only; PNG remains the fallback |
 | `SITE_LOGO_GLB_MAXMB` | Reminder budget, not enforced. GitHub caps files at 100 MB |
+| `SITE_FAVICON` | Root-relative favicon path; leave empty until the final logo-derived icon exists |
+| `SITE_SOCIAL_IMAGE` | Root-relative Open Graph/social image path; leave empty until artwork exists |
 
 ### Spoilers
 
@@ -136,6 +139,7 @@ Every JS file opens with its tunables in the first ~10 lines.
 | --- | --- |
 | `js/shell.js` | `SHELL_SHOW_GLYPHS`, `SHELL_REVEAL_ON`, `SHELL_FOOTER_LINKS` |
 | `js/home.js` | `HOME_SHOW_LOGO`, `HOME_GLB_MIN_WIDTH` |
+| `js/gameplay.js` | `GAMEPLAY_MOTION_MEDIA_URL`, `GAMEPLAY_MOTION_MEDIA_ALT` |
 | `js/order-page.js` | `ORDER_DEFAULT_TAB`, `ORDER_TAB_LABELS`, `ORDER_SHOW_SHARED` |
 | `js/lore.js` | `LORE_SHOW_TOC`, `LORE_SHOW_LINKS` |
 | `js/quiz.js` | `QUIZ_LENGTH`, `QUIZ_OPENERS`, `QUIZ_PROBE_LEAD`, `QUIZ_SHUFFLE` |
@@ -150,6 +154,7 @@ Every JS file opens with its tunables in the first ~10 lines.
 | File | Drives |
 | --- | --- |
 | `lore.json` | The Stormlight Archive primer — add a section by adding an object |
+| `gameplay.json` | Modes, combat systems, animation credit, and gameplay FAQ |
 | `orders/<id>.json` | One Order: lore, quotes, facts, gameplay, abilities |
 | `shared-mechanics.json` | Stormlight + Gravitation. **Rendered on every Order page**, so edit once |
 | `quiz.json` | 20 questions, scoring, results |

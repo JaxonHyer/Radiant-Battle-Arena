@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found</title>
+<meta name="description" content="The requested Radiant: Battle Arena page could not be found.">
+<script>
+  const notFoundBase = location.hostname.endsWith("github.io")
+    ? `/${location.pathname.split("/").filter(Boolean)[0]}/`
+    : "/";
+  document.write(`<base href="${notFoundBase}">`);
+</script>
+<link rel="stylesheet" href="css/site.css">
+<script src="GlobalSiteConfig.js"></script>
+</head>
+<body>
+<main>
+  <div class="wrap hero">
+    <p class="section-label">404 · Lost in Shadesmar</p>
+    <h1>That page is gone</h1>
+    <p class="tagline">The path may have changed, or the page may never have existed.</p>
+    <div class="btn-row">
+      <a class="btn primary" href="index.html">Return home</a>
+      <a class="btn" href="Gameplay/index.html">Explore gameplay</a>
+      <a class="btn ghost" href="Roadmap/index.html">View the roadmap</a>
+    </div>
+  </div>
+</main>
+<script src="js/shell.js"></script>
+</body>
+</html>

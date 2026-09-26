@@ -52,11 +52,20 @@
   },
 
   "gameplay": {
-    "summary": "The Windrunner is the launch Order built around sustained flight and closing distance. Gravitation gives you the Lashing kit shared with the Skybreaker; Adhesion is what will set the Windrunner apart.",
+    "summary": "The Windrunner is planned around sustained flight, control, and closing distance. Gravitation provides the Lashing kit shared with the Skybreaker; the planned Adhesion abilities immobilize targets and reshape aerial movement. Only Gravitation is currently implemented.",
     "uniqueSurge": {
       "name": "Adhesion",
-      "status": "in-development",
-      "note": "Adhesion abilities have not been designed yet. This section will be filled in once the kit is written down."
+      "status": "planned",
+      "abilities": [
+        {
+          "name": "Adhesion shot",
+          "desc": "Aim and launch a blob of Adhesion from a distance to immobilize an enemy—or the other player when Friendly Fire allows it."
+        },
+        {
+          "name": "Wind Bubble",
+          "desc": "Reduce drag to fly faster while pushing nearby objects away. This is the Windrunner's game-specific version of a Reverse Lashing."
+        }
+      ]
     }
   }
 }

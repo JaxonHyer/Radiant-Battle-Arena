@@ -53,7 +53,8 @@ Behavioural notes from the first session. These matter.
 - **Wants to be consulted before you build.** In session one the developer stopped an in-progress build with *"No writing any code yet... Only write code when I tell you go ahead."* **Do not start writing code in response to an open-ended or brainstorming message.** Ask questions, present a plan, wait for an explicit go-ahead.
 - **Gives detailed, high-quality specs** when asked. Ask precise questions and you'll get precise answers.
 - **Changes their mind, and that's fine.** The quiz went from "link to Brandon's official quiz" to "we're making our own" within one message. Don't argue; just re-scope.
-- **Reviews on a phone.** Mobile rendering matters. The sandbox live preview did not work for them — they review via the deployed GitHub Pages site. **Open a PR so they can merge and view live, rather than relying on a preview server.**
+- **Reviews on a phone.** Mobile rendering matters. The sandbox live preview did not work for them, so test mobile layouts carefully.
+- **Do not open a pull request unless the developer explicitly reverses this instruction.** They warned that opening one will lock this session out of the repository.
 - **Was concerned by long silent tool runs** — thought the agent had frozen. **Narrate what you're doing between tool calls.** Don't batch ten silent operations.
 - **Cares about doing right by the source material.** Raised the legal question unprompted ("Will Dragonsteel and Brandon Sanderson kill me?"). Give them real research, not vibes, and flag risk honestly.
 - **Explicitly asked for overkill documentation** — hence this file.
@@ -72,6 +73,8 @@ Behavioural notes from the first session. These matter.
 ├── GlobalSiteConfig.js          ← site-wide config, loaded by every page
 │
 ├── index.html                   ← home
+├── 404.html                     ← GitHub Pages not-found page
+├── Gameplay/                    ← modes, combat, local multiplayer, FAQ
 ├── StormlightArchiveLore/       ← "What is the Stormlight Archive?" primer
 ├── Windrunner/                  ← Order page (lore ⇄ gameplay toggle)
 ├── Skybreaker/                  ← Order page (lore ⇄ gameplay toggle)
@@ -87,6 +90,7 @@ Behavioural notes from the first session. These matter.
 ├── js/
 │   ├── shell.js                 ← header, nav, footer, spoiler toggle, scroll reveal
 │   ├── home.js                  ← home page + 3D logo loading
+│   ├── gameplay.js              ← gameplay overview + configurable media slot
 │   ├── order-page.js            ← renders ANY Order from JSON; tabs; controls SVG
 │   ├── lore.js                  ← lore primer
 │   ├── quiz.js                  ← adaptive quiz engine
@@ -95,8 +99,9 @@ Behavioural notes from the first session. These matter.
 │   └── pages.js                 ← roadmap, devlog, credits
 │
 ├── data/
-│   ├── lore.json                ├── quiz.json        ├── roadmap.json
-│   ├── shared-mechanics.json    ├── assets.json      ├── devlog.json
+│   ├── lore.json                ├── gameplay.json    ├── quiz.json
+│   ├── shared-mechanics.json    ├── assets.json      ├── roadmap.json
+│   ├── devlog.json
 │   ├── credits.json
 │   └── orders/
 │       ├── windrunner.json
@@ -166,6 +171,9 @@ Every one of these was explicitly chosen by the developer. **Do not silently rev
 | Site structure | **Multi-page**, not a single scrolling page |
 | Visual style | **Dark sci-fantasy game site** (near-black, Stormlight glow) — not a parchment codex |
 | Playable Orders at launch | **Windrunner and Skybreaker only.** More "maybe later" |
+| Player format | **Solo with optional two-player local split-screen.** Online multiplayer is not planned |
+| Modes | **Arena** planned for v1; **Adventure** planned but release timing is not locked |
+| Friendly Fire | In enemy Arena play, on = the other player is treated as an enemy for every damage type |
 | Order pages | **One page per Order**, with a **lore ⇄ gameplay toggle** (two sections, one page) |
 | Shared mechanics text | **Duplicated onto both Order pages** (developer said "Duplicate it"). Implemented as one shared JSON rendered on both, so it's edited once |
 | Lore page | Separate, at `StormlightArchiveLore/index.html`, reached from a home-page button |
@@ -216,14 +224,73 @@ Note this is **canon-accurate** — Coppermind confirms a person holds Stormligh
 | Steer | Mouse / camera | Right stick |
 | Dodge left / right | **A / D** | Left stick left / right |
 
-### Undesigned
+### Current implementation status
 
-- **Adhesion** (Windrunner's second Surge) — *"I just haven't written down anything about Division or Adhesion, i will though."*
-- **Division** (Skybreaker's second Surge) — same.
+**Only Gravitation is currently implemented.** Treat Arena, Adventure, melee combat, progression, Adhesion, Division, health, respawning, and the features below as plans—not as finished functionality. Most planned systems are intended for v1, but Adventure and Urithiru may come later. There is no public build.
 
-Both render an "in development" block. **Wait for the developer's design; do not fill these in yourself.**
+### Players and multiplayer
 
-Also undefined: match format, player count, modes, maps/arenas, progression, whether Parshendi are playable (a `assets/characters/Parshendi/` folder exists, so they're at least an asset).
+- Both Arena and Adventure are planned for **solo play with an optional second local player in split-screen**.
+- Multiplayer is always local. **Online multiplayer is explicitly not planned.**
+- Both players may choose the same Order.
+- Player progression is separate, but level unlocks are shared.
+- A planned Honorblade test level appears before the player chooses an Order.
+
+### Game modes
+
+**Arena** is planned for v1 with two broad formats:
+
+- Fight the other player with no enemies.
+- Fight selectable waves of enemies or play an endless survival variant. Selectable waves are won by clearing every wave; endless play is about surviving.
+- Arena loads the players' Adventure save files/resources. Whether Arena changes Adventure progression is undecided.
+- Friendly Fire is relevant to enemy-wave play. When enabled, the other player is treated as an enemy character and **all damage types** apply to them.
+
+**Adventure** is planned but its release timing is not locked:
+
+- Level-based, with a level-selection screen.
+- Levels are unlocked by completing other levels or reaching an achievement such as the Third Ideal.
+- Levels are replayable, quest-based, and usually depict battles from *The Stormlight Archive*, though some may differ.
+- Most levels will probably end with a boss.
+- Players respawn until a level-specific victory or failure condition is met.
+
+### Combat, health, and progression
+
+- Combat is planned on the ground and in the air. A flying player can still use melee weapons.
+- Planned weapons: shield, hammer, spear, and two-handed sword. Bows are undecided.
+- Combos can switch weapons between swings and continue with the newly equipped weapon. Shields—and bows, if added—are excluded from this mid-combo switching.
+- Shardblades become available at or above the Third Ideal.
+- Players begin with ten hearts; half-heart damage exists.
+- Stormlight heals the player whenever they hold any.
+- Respawning removes all held Stormlight.
+- Towerlight exists in the game. Urithiru is intended but may not be in v1. Treat both as spoiler-sensitive in public copy.
+
+### Planned unique Surges
+
+**Adhesion — Windrunner:**
+
+- Fire aimed blobs of Adhesion to immobilize enemies or the other player when Friendly Fire applies.
+- Enable a Wind Bubble that reduces drag for faster flight and pushes objects away. This is the game's Windrunner-only interpretation of a Reverse Lashing.
+
+**Division — Skybreaker:**
+
+- Maintain a Division Bubble while grounded or flying. It fractures Chaos-enabled meshes, using `ExplosiveImpact` or `SlowCorroding` settings based on velocity. The input is undecided.
+- Use Division Touch while grounded: the character reaches out and obliterates touched Chaos-enabled objects. Enemies take heavy damage instead. The input is undecided, and the move cannot be used in the air.
+
+### Animation foundation
+
+The player character uses Epic Games' **Game Animation Sample Project** as its animation base, driven by Unreal Engine's **Motion Matching** system. The site links to Epic's official documentation and credits Epic. `GAMEPLAY_MOTION_MEDIA_URL` in `js/gameplay.js` is intentionally empty until the developer supplies a clip; do not copy or hotlink documentation media without confirming reuse terms.
+
+### Still undecided
+
+- Whether Arena changes Adventure progression or only reads Adventure save files.
+- Exact Arena wave counts and balancing.
+- Division and Adhesion input bindings.
+- Whether bows will be included.
+- Specific maps/arenas and most level objectives.
+- Whether Parshendi are playable (an `assets/characters/Parshendi/` folder exists, so they are at least an asset).
+- Final placement and v1 scope for Urithiru.
+
+Do not settle these questions or invent additional mechanics without asking the developer.
 
 ---
 
@@ -263,7 +330,7 @@ Coppermind also notes that direct book quotations on their pages are fair-use re
 
 - Conspicuous unofficial-fan-project disclaimer (footer, every page) ✅
 - Non-commercial notice on the assets page ✅
-- Takedown contact ✅ (⚠️ email is still a placeholder)
+- Takedown contact ✅ (`jaxonkhyer@gmail.com` plus GitHub Issues)
 - Unreal Engine 5.8 credit ✅
 
 ---
@@ -320,26 +387,23 @@ Second person, direct, no marketing hype. Short sentences. The developer's own c
 
 ### Blocking before public sharing
 
-1. **`REPORT_EMAIL` is `your-email@example.com`** in `GlobalSiteConfig.js`. A dead takedown address is worse than none. The developer has not supplied one. If they want GitHub Issues only, set it to `""` **and add a guard so the mailto button is hidden** (that guard does not exist yet).
-2. **`assets/logo.png` does not exist.** The hero renders title-only; the `<img>` deletes itself via `onerror` rather than showing a broken icon. Developer has an AI-generated logo to add.
+1. **`assets/logo.png` does not exist.** The developer is still polishing it. The hero safely falls back to text. Once supplied, also create a favicon and social-sharing image, then set `SITE_FAVICON` and `SITE_SOCIAL_IMAGE`.
 
 ### Waiting on the developer
 
-3. **Adhesion and Division ability kits** — not designed yet.
-4. **The Parshendi FBX** — `data/assets.json` points at the folder `assets/characters/Parshendi/` with `usePreview: false`. Needs a real packaged file and a size.
-5. **GLB logo** — `SITE_LOGO_GLB_ON` is `false`. Wired to lazy-load `model-viewer` on desktop ≥900px with the PNG as fallback. Suggested budget 5 MB (GitHub hard-caps files at 100 MB).
-6. **Custom domain** — undecided. No config change needed if adopted.
-7. **Download URLs** — all three point at GitHub Releases `latest` and all have `operatingSystemReleased: false`.
-8. **System requirements** — all `"TBD"`.
+2. **Gameplay/Motion Matching clip** — `GAMEPLAY_MOTION_MEDIA_URL` in `js/gameplay.js` is an empty configurable placeholder. Prefer the developer's own project capture over copied Epic documentation media.
+3. **The Parshendi FBX** — `data/assets.json` points at the folder `assets/characters/Parshendi/` with `usePreview: false`. Needs a real packaged file and a size.
+4. **GLB logo** — `SITE_LOGO_GLB_ON` is `false`. Wired to lazy-load `model-viewer` on desktop ≥900px with the PNG as fallback. Suggested budget 5 MB (GitHub hard-caps files at 100 MB).
+5. **Custom domain** — undecided. No config change needed if adopted.
+6. **Download URLs** — all three point at GitHub Releases `latest` and all have `operatingSystemReleased: false`.
+7. **System requirements** — all `"TBD"`.
+8. **Real devlog history** — sample entries were removed from `data/devlog.json`; the page shows an honest empty state until verified Diversion history is supplied.
 
-### Unreviewed / likely to need work
+### Implemented but still needs device review
 
-9. **Mobile.** The developer reviews on a phone and has not yet reported back. Two suspect areas: the **8-item nav wraps** instead of collapsing into a hamburger, and the **controls highlighter** requires tap rather than hover on touch devices. Expect to build a mobile menu.
-10. **No favicon.**
-11. **No Open Graph / social preview tags.**
-12. **No 404 page.**
-13. **Glyph PNGs are large** (~0.8 MB and ~1.1 MB) for what are essentially two-colour icons. Worth optimising or converting to SVG.
-14. **Devlog/roadmap contain sample entries** written as plausible placeholders. The developer should replace them with real Diversion history.
+9. **Mobile navigation.** A keyboard-accessible hamburger menu now replaces the wrapped desktop nav below 900px. Test it on the developer's phone.
+10. **Social metadata.** Open Graph/Twitter metadata is injected by `shell.js`; image metadata remains disabled until final logo artwork is supplied.
+11. **404 page.** Added at `/404.html`; verify GitHub Pages serves it as expected.
 
 ---
 
@@ -364,6 +428,10 @@ Don't re-propose these; they were considered and dismissed.
 ---
 
 ## 12. Session and Git workflow
+
+### Current instruction
+
+**Do not open a pull request.** The developer explicitly said opening one will lock this session out of the repository. Keep work on the Arena session branch and let the developer decide when and how to integrate it.
 
 ### ⚠️ The lifecycle trap that ended session one
 
@@ -449,4 +517,4 @@ Then manually confirm:
 
 **"Why is there a `usePreview` flag?"** Because an FBX can't render as an image and the developer didn't want a broken thumbnail.
 
-**"Can I push / open a PR?"** Only if this session's PR hasn't been merged or closed. See §12.
+**"Can I push / open a PR?"** Do not open a PR in the current session; the developer explicitly warned it will lock repository access. See §12.
