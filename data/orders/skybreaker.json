@@ -1,0 +1,62 @@
+{
+  "id": "skybreaker",
+  "name": "Skybreaker",
+  "accent": "#c9c4de",
+  "glyph": "assets/glyphs/skybreaker.png",
+  "surges": ["Gravitation", "Division"],
+  "spren": "Highspren",
+  "polestone": "Smokestone",
+  "essence": "Vapor",
+  "tagline": "An oath to seek and administer justice.",
+  "chips": ["Playable at launch", "Aerial", "Judgment"],
+
+  "lore": {
+    "intro": [
+      "Skybreakers are Surgebinders who wield Gravitation and Division. Where the Windrunner's second Surge binds things together, the Skybreaker's tears them apart — Division governs decay, burning and disintegration.",
+      "They bond highspren, and they organise themselves around law and codes. A Skybreaker chooses something external to follow and then follows it without flinching, which is a discipline the rest of Roshar tends to read as fanaticism."
+    ],
+    "quotes": [
+      {
+        "text": "The second is the Ideal of Justice, an oath to seek and administer justice.",
+        "source": "Ki, explaining the Second Ideal of the Skybreakers — via The Coppermind, \"Order of Skybreakers\"",
+        "url": "https://coppermind.net/wiki/Order_of_Skybreakers",
+        "spoiler": false,
+        "feature": true
+      },
+      {
+        "text": "The Skybreakers are Surgebinders who use the Surges of Gravitation and Division, and they are associated with the smokestone polestone. They form a Nahel bond with highspren. They are widely thought of as fanatics in both Shadesmar and the Physical Realm.",
+        "source": "The Coppermind, \"Order of Skybreakers\"",
+        "url": "https://coppermind.net/wiki/Order_of_Skybreakers",
+        "spoiler": false
+      },
+      {
+        "text": "The Skybreakers were the only Radiant order not to have abandoned their oaths on the Day of Recreance, and continued to operate in secret until the present day.",
+        "source": "The Coppermind, \"Order of Skybreakers\"",
+        "url": "https://coppermind.net/wiki/Order_of_Skybreakers",
+        "spoiler": true
+      },
+      {
+        "text": "I watched you destroy yourself in the name of order, watched you obey your personal code when others would have fled or crumbled. Szeth-son-Neturo, I watched you keep your word with perfection. This is a thing lost to most people — it is the only genuine beauty in the world. I doubt I have ever found a man more worthy of the Skybreakers than you.",
+        "source": "Nale to Szeth, Words of Radiance — via The Coppermind, \"Order of Skybreakers\"",
+        "url": "https://coppermind.net/wiki/Order_of_Skybreakers",
+        "spoiler": true
+      }
+    ],
+    "facts": [
+      { "label": "Surges", "value": "Gravitation · Division" },
+      { "label": "Spren", "value": "Highspren" },
+      { "label": "Polestone", "value": "Smokestone" },
+      { "label": "Essence", "value": "Vapor" },
+      { "label": "Outlook", "value": "Law and codes" }
+    ]
+  },
+
+  "gameplay": {
+    "summary": "The Skybreaker is the launch Order built around precision and punishment. Gravitation gives you the Lashing kit shared with the Windrunner; Division is what will set the Skybreaker apart.",
+    "uniqueSurge": {
+      "name": "Division",
+      "status": "in-development",
+      "note": "Division abilities have not been designed yet. This section will be filled in once the kit is written down."
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "windrunner",
+  "name": "Windrunner",
+  "accent": "#4f8cff",
+  "glyph": "assets/glyphs/windrunner.png",
+  "surges": ["Adhesion", "Gravitation"],
+  "spren": "Honorspren",
+  "polestone": "Sapphire",
+  "essence": "Zephyr",
+  "tagline": "I will protect.",
+  "chips": ["Playable at launch", "Aerial", "Protector"],
+
+  "lore": {
+    "intro": [
+      "Windrunners are Surgebinders who wield Adhesion and Gravitation. Together, those two Surges produce the three Lashings — the abilities that let a Windrunner stick objects together, redirect what falls toward them, and choose which way is down for themselves.",
+      "Their bond is with honorspren, and their outlook is built around protection: standing between danger and the people who cannot stand there themselves. They favour squads, command structures, and disciplined martial skill."
+    ],
+    "quotes": [
+      {
+        "text": "I will protect.",
+        "source": "The core philosophy of the Windrunners — The Coppermind, \"Order of Windrunners\"",
+        "url": "https://coppermind.net/wiki/Order_of_Windrunners",
+        "spoiler": false,
+        "feature": true
+      },
+      {
+        "text": "The Windrunners are Surgebinders who use the Surges of Adhesion and Gravitation, and they are associated with the sapphire polestone. They form a Nahel bond with honorspren. Windspren form their Shardplate. The combination of Adhesion and Gravitation results in the three Lashings.",
+        "source": "The Coppermind, \"Order of Windrunners\"",
+        "url": "https://coppermind.net/wiki/Order_of_Windrunners",
+        "spoiler": false
+      },
+      {
+        "text": "Windrunners generally train to become the best duelists and weapon masters of the Radiant orders. They tend to attract those who seek to protect the defenseless, but also enjoy action and fighting for what they believe in.",
+        "source": "The Coppermind, \"Order of Windrunners\"",
+        "url": "https://coppermind.net/wiki/Order_of_Windrunners",
+        "spoiler": false
+      },
+      {
+        "text": "\"I'm not some glorious knight of ancient days. I'm a broken man. Do you hear me, Syl? I'm broken.\" She zipped up to him and whispered, \"That's what they all were, silly.\"",
+        "source": "Kaladin and Syl, Words of Radiance — via The Coppermind, \"Knights Radiant\"",
+        "url": "https://coppermind.net/wiki/Knights_Radiant",
+        "spoiler": true
+      }
+    ],
+    "facts": [
+      { "label": "Surges", "value": "Adhesion · Gravitation" },
+      { "label": "Spren", "value": "Honorspren" },
+      { "label": "Polestone", "value": "Sapphire" },
+      { "label": "Essence", "value": "Zephyr" },
+      { "label": "Shardplate", "value": "Formed by windspren" }
+    ]
+  },
+
+  "gameplay": {
+    "summary": "The Windrunner is the launch Order built around sustained flight and closing distance. Gravitation gives you the Lashing kit shared with the Skybreaker; Adhesion is what will set the Windrunner apart.",
+    "uniqueSurge": {
+      "name": "Adhesion",
+      "status": "in-development",
+      "note": "Adhesion abilities have not been designed yet. This section will be filled in once the kit is written down."
+    }
+  }
+}
