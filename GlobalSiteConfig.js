@@ -76,6 +76,7 @@ const NAV_LINKS = [
   { orders: true },
   { label: "Quiz",     href: "Quiz/index.html" },
   { label: "Download", href: "Download/index.html" },
+  { label: "Assets",   href: "Assets/index.html" },
   { label: "Roadmap",  href: "Roadmap/index.html" },
   { label: "Devlog",   href: "Devlog/index.html" },
   { label: "Credits",  href: "Credits/index.html" }

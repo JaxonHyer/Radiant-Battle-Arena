@@ -316,3 +316,26 @@ table.specs th { color: var(--muted); font-weight: 600; width: 40%; }
 /* Individually revealed spoiler block */
 body:not(.spoilers-shown) .spoiler.revealed-one { filter: none; user-select: auto; cursor: auto; }
 body:not(.spoilers-shown) .spoiler.revealed-one::after { content: none; }
+
+/* ---------- Free assets ---------- */
+.asset-card {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel), var(--bg-2)); overflow: hidden;
+}
+.asset-preview {
+  background: #070a11; border-bottom: 1px solid var(--line);
+  min-height: 170px; display: flex; align-items: center; justify-content: center;
+  padding: 18px; gap: 8px; flex-direction: column;
+}
+.asset-preview img { max-height: 150px; width: auto; object-fit: contain; }
+.asset-preview.is-empty {
+  background: repeating-linear-gradient(45deg, #080c14, #080c14 12px, #0b111c 12px, #0b111c 24px);
+}
+.asset-format {
+  font-family: var(--font-display); font-size: 1.5rem; letter-spacing: .14em;
+  color: var(--storm); border: 1px solid var(--storm-dim);
+  border-radius: 10px; padding: 8px 18px;
+}
+.asset-body { padding: 18px 20px; }
+.asset-body h3 { margin: 0 0 6px; font-size: 1.1rem; }

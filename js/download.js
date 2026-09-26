@@ -6,7 +6,7 @@
 const DL_AUTO_REDIRECT   = true;  // Send Download/ straight to the detected OS page
 const DL_REDIRECT_DELAY  = 1200;  // ms to show "detecting…" before redirecting
 const DL_REMEMBER_CHOICE = true;  // Don't auto-redirect again if the visitor picked an OS manually
-const DL_FALLBACK_OS     = "windows"; // Used when the browser tells us nothing useful
+const DL_UNKNOWN_PAGE    = "Download/supported/index.html"; // Where to send visitors whose OS we can't detect
 
 /* ========================================================================== */
 
@@ -15,15 +15,15 @@ const DL_FALLBACK_OS     = "windows"; // Used when the browser tells us nothing 
   const u = C.siteUrl;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-  /** Best guess at the visitor's desktop OS. */
+  /** Best guess at the visitor's desktop OS, or null if we genuinely can't tell. */
   function detectOs() {
     const p = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "";
     const ua = navigator.userAgent || "";
     const s = (p + " " + ua).toLowerCase();
     if (/mac|darwin|iphone|ipad/.test(s)) return "mac";
-    if (/linux|x11|ubuntu|android/.test(s)) return "linux";
+    if (/linux|x11|ubuntu|android|cros/.test(s)) return "linux";
     if (/win/.test(s)) return "windows";
-    return DL_FALLBACK_OS;
+    return null; // unknown — send them to the supported-OS list instead of guessing
   }
 
   function osCard(key) {
@@ -41,16 +41,20 @@ const DL_FALLBACK_OS     = "windows"; // Used when the browser tells us nothing 
     const root = document.getElementById("dl-root");
     const os = detectOs();
     const skip = DL_REMEMBER_CHOICE && sessionStorage.getItem("rba-dl-manual") === "1";
+    const willRedirect = DL_AUTO_REDIRECT && !skip;
+
+    let status = "Choose your platform.";
+    if (willRedirect) {
+      status = os
+        ? `Detected <strong>${esc(C.DOWNLOADS[os].label)}</strong> — taking you there…`
+        : `We couldn't detect your operating system — showing you every supported platform…`;
+    }
 
     root.innerHTML = `<div class="wrap">
       <div class="hero" style="text-align:left">
         <p class="section-label">Download</p>
         <h1 style="text-align:left">Get the build</h1>
-        <p class="lede" id="dl-detect">
-          ${DL_AUTO_REDIRECT && !skip
-            ? `Detected <strong>${esc(C.DOWNLOADS[os].label)}</strong> — taking you there…`
-            : `Choose your platform.`}
-        </p>
+        <p class="lede" id="dl-detect">${status}</p>
       </div>
       <div class="grid three">${Object.keys(C.DOWNLOADS).map(osCard).join("")}</div>
       <section>
@@ -64,9 +68,37 @@ const DL_FALLBACK_OS     = "windows"; // Used when the browser tells us nothing 
     root.querySelectorAll(".order-card").forEach(a =>
       a.addEventListener("click", () => sessionStorage.setItem("rba-dl-manual", "1")));
 
-    if (DL_AUTO_REDIRECT && !skip) {
-      setTimeout(() => { location.href = u("Download/" + os + "/index.html"); }, DL_REDIRECT_DELAY);
+    if (willRedirect) {
+      const target = os ? "Download/" + os + "/index.html" : DL_UNKNOWN_PAGE;
+      setTimeout(() => { location.href = u(target); }, DL_REDIRECT_DELAY);
     }
+    window.rbaRefresh();
+  };
+
+  /* ---------- Download/supported/index.html (OS detection failed) ---------- */
+  window.renderSupportedOs = function () {
+    const root = document.getElementById("dl-root");
+    document.title = `Supported operating systems · ${C.SITE_TITLE}`;
+
+    root.innerHTML = `<div class="wrap">
+      <div class="hero" style="text-align:left">
+        <p class="section-label">Download</p>
+        <h1 style="text-align:left">Supported operating systems</h1>
+        <p class="lede">We couldn't work out which system you're on, so here is every platform the game is built for.
+        Pick yours to go to its download page.</p>
+      </div>
+      <div class="grid three">${Object.keys(C.DOWNLOADS).map(osCard).join("")}</div>
+      <section>
+        <h2>System requirements</h2>
+        <div class="panel"><table class="specs">
+          ${Object.entries(C.SYSTEM_REQUIREMENTS).map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join("")}
+        </table></div>
+      </section>
+    </div>`;
+
+    // Remember the manual pick so Download/ stops trying to redirect them.
+    root.querySelectorAll(".order-card").forEach(a =>
+      a.addEventListener("click", () => sessionStorage.setItem("rba-dl-manual", "1")));
     window.rbaRefresh();
   };
 
