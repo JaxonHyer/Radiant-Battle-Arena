@@ -141,7 +141,10 @@ function gameplayHtml(order, shared) {
     <p class="lede">${esc(order.gameplay.summary)}</p>
     <h3>Shared Radiant mechanics</h3>
     ${sharedHtml}
-    <h3 style="margin-top:34px">${esc(us.name)} — unique to the ${esc(order.name)}</h3>
+    <div class="card-heading" style="margin-top:34px">
+      <h3 style="margin:0">${esc(us.name)} — unique to the ${esc(order.name)}</h3>
+      <span class="chip status-chip">${esc(us.status)}</span>
+    </div>
     ${unique}
   `;
 }

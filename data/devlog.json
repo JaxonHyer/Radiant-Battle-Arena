@@ -1,26 +1,4 @@
 {
-  "note": "Hand-written from Diversion. Diversion links are account-walled, so no URLs here — values are typed in by hand. Newest entry first.",
-  "entries": [
-    {
-      "date": "2026-09-25",
-      "commitTitle": "Learn More site scaffolded",
-      "version": "0.0.1",
-      "branch": "gh-pages",
-      "operatingSystemsUpdated": []
-    },
-    {
-      "date": "2026-09-20",
-      "commitTitle": "Lashing intensity ramp and camera steering pass",
-      "version": "0.0.1",
-      "branch": "main",
-      "operatingSystemsUpdated": ["Windows"]
-    },
-    {
-      "date": "2026-09-14",
-      "commitTitle": "Stormlight drain + sphere pickup prototype",
-      "version": "0.0.1",
-      "branch": "main",
-      "operatingSystemsUpdated": ["Windows"]
-    }
-  ]
+  "note": "Hand-written from Diversion. Diversion links are account-walled, so no URLs belong here. Add verified entries newest first.",
+  "entries": []
 }

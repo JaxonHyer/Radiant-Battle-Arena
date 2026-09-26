@@ -52,11 +52,20 @@
   },
 
   "gameplay": {
-    "summary": "The Skybreaker is the launch Order built around precision and punishment. Gravitation gives you the Lashing kit shared with the Windrunner; Division is what will set the Skybreaker apart.",
+    "summary": "The Skybreaker is planned around precision, destruction, and environmental chaos. Gravitation provides the Lashing kit shared with the Windrunner; Division fractures objects and heavily damages enemies. Only Gravitation is currently implemented.",
     "uniqueSurge": {
       "name": "Division",
-      "status": "in-development",
-      "note": "Division abilities have not been designed yet. This section will be filled in once the kit is written down."
+      "status": "planned",
+      "abilities": [
+        {
+          "name": "Division Bubble",
+          "desc": "Maintain a bubble while grounded or flying that fractures Chaos-enabled meshes. Impact velocity selects either an explosive impact or a slow-corroding fracture response. The input is undecided."
+        },
+        {
+          "name": "Division Touch",
+          "desc": "Reach out while grounded to obliterate touched Chaos-enabled objects. Enemies take heavy damage instead of being physically obliterated. The input is undecided, and this attack cannot be used in the air."
+        }
+      ]
     }
   }
 }

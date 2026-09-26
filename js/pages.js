@@ -45,13 +45,13 @@ const PAGE_DATE_STYLE   = { year: "numeric", month: "short", day: "numeric" }; /
         <p class="lede">Hand-written from Diversion.</p>
       </div>
       <div class="grid">
-        ${d.entries.slice(0, PAGE_DEVLOG_LIMIT).map(e => `
+        ${d.entries.length ? d.entries.slice(0, PAGE_DEVLOG_LIMIT).map(e => `
           <div class="devlog-entry reveal">
             <h3>${esc(e.commitTitle)}</h3>
             <p class="meta">${esc(fmt(e.date))} · v${esc(e.version)} · branch <code>${esc(e.branch)}</code></p>
             <div>${(e.operatingSystemsUpdated || []).map(o => `<span class="tag">${esc(o)}</span>`).join("")
               || `<span class="tag">No platform build</span>`}</div>
-          </div>`).join("")}
+          </div>`).join("") : `<div class="panel"><h3 style="margin-top:0">No verified entries yet</h3><p class="lede">Development history will be added here from Diversion.</p></div>`}
       </div>
     </div>`;
     window.rbaRefresh();
