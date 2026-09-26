@@ -12,7 +12,7 @@ const SITE_LOGO_GLB_MAXMB = 5;                                    // Size budget
 const SITE_ENGINE         = "Unreal Engine 5.8";                  // Engine credit shown in footer + credits
 const SITE_SPOILER_LIMIT  = "Words of Radiance";                  // Characters/timeline are only discussed up to this book
 const SITE_SPOILERS_ON    = false;                                // Default spoiler-blur state: false = blurred/hidden
-const SITE_BASE_OVERRIDE  = "";                                   // Leave "" to auto-detect. Set e.g. "/" for a custom domain
+const SITE_BASE_OVERRIDE  = "https://jaxonhyer,github.io/Radiant-Battle-Arena/";                                   // Leave "" to auto-detect. Set e.g. "/" for a custom domain
 
 /* --------------------------------------------------------------------------
    DOWNLOADS — one block per operating system.
