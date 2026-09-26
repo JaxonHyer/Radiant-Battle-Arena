@@ -12,7 +12,7 @@ const SITE_LOGO_GLB_MAXMB = 5;                                    // Size budget
 const SITE_ENGINE         = "Unreal Engine 5.8";                  // Engine credit shown in footer + credits
 const SITE_SPOILER_LIMIT  = "Words of Radiance";                  // Characters/timeline are only discussed up to this book
 const SITE_SPOILERS_ON    = false;                                // Default spoiler-blur state: false = blurred/hidden
-const SITE_BASE_OVERRIDE  = "https://jaxonhyer,github.io/Radiant-Battle-Arena/";                                   // Leave "" to auto-detect. Set e.g. "/" for a custom domain
+const SITE_BASE_OVERRIDE  = "";                                   // Leave "" to auto-detect. Set e.g. "/" for a custom domain
 
 /* --------------------------------------------------------------------------
    DOWNLOADS — one block per operating system.
@@ -90,7 +90,7 @@ const NAV_LINKS = [
    -------------------------------------------------------------------------- */
 const REPORT_SHOW    = true;                                  // Show the report/takedown notice
 const REPORT_TITLE   = "Report content or request a takedown"; // Heading used on the Credits page
-const REPORT_EMAIL   = "your-email@example.com";              // ← SET THIS. Where takedown requests go
+const REPORT_EMAIL   = "jaxonkhyer@gmail.com";              // ← SET THIS. Where takedown requests go
 const REPORT_GITHUB  = "https://github.com/JaxonHyer/Radiant-Battle-Arena/issues"; // Public issue tracker ("" to hide)
 const REPORT_BODY    = "This is an unofficial, non-commercial fan project. If you are a rights holder — or you believe something here infringes a copyright, uses an asset without proper credit, or should not be distributed — contact me and I will remove or correct it promptly. No argument, no delay.";
 const REPORT_RESPONSE = "I aim to respond within 7 days.";     // Set to "" to omit
