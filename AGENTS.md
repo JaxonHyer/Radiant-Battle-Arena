@@ -68,7 +68,7 @@ Behavioural notes from the first session. These matter.
 ├── AGENTS.md                    ← you are here
 ├── CONFIG.md                    ← exhaustive configuration reference
 ├── README.md                    ← game overview for repo visitors (NOT config docs)
-├── LICENSE                      ← CC BY-SA 4.0
+├── LICENSE.md                   ← CC BY-SA 4.0
 ├── .nojekyll                    ← stops GitHub Pages running Jekyll
 ├── robots.txt / sitemap.xml     ← search-engine discovery
 ├── GlobalSiteConfig.js          ← site-wide config, loaded by every page
@@ -327,7 +327,7 @@ Coppermind also notes that direct book quotations on their pages are fair-use re
 
 ### Repo licence conflict
 
-`LICENSE` is **CC BY-SA 4.0**, which is incompatible with NC-ND quoted material. Resolved by `LEGAL_LICENSE` in the config, which states the CC BY-SA grant covers **original content only** and excludes quoted material. Keep that carve-out.
+`LICENSE.md` is **CC BY-SA 4.0**, which is incompatible with NC-ND quoted material. Resolved by `LEGAL_LICENSE` in the config, which states the CC BY-SA grant covers **original content only** and excludes quoted material. Keep that carve-out.
 
 ### Required on the site
 
