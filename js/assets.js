@@ -50,7 +50,14 @@ const ASSETS_FOLDER_TEXT = "Browse files"; // Used when the path is a folder, no
   }
 
   window.renderAssets = async function () {
-    const d = await fetch(u(ASSETS_FILE)).then(r => r.json());
+    const root = document.getElementById("page-root");
+    let d;
+    try {
+      d = await window.rbaFetchJson(u(ASSETS_FILE));
+    } catch (error) {
+      window.rbaShowError(root);
+      return;
+    }
     const notice = ASSETS_NC_WARNING ? `
       <div class="spoiler-note" style="margin:20px 0">
         <strong>Non-commercial use only.</strong> ${esc(d.license)}
@@ -58,7 +65,7 @@ const ASSETS_FOLDER_TEXT = "Browse files"; // Used when the path is a folder, no
         ${C.REPORT_SHOW ? ` <a href="${u("Credits/index.html#report")}">Report an asset</a>.` : ""}
       </div>` : "";
 
-    document.getElementById("page-root").innerHTML = `<div class="wrap">
+    root.innerHTML = `<div class="wrap">
       <div class="hero" style="text-align:left">
         <p class="section-label">Free assets</p>
         <h1 style="text-align:left">Downloads</h1>

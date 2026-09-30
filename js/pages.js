@@ -15,10 +15,18 @@ const PAGE_DATE_STYLE   = { year: "numeric", month: "short", day: "numeric" }; /
   const u = C.siteUrl;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const fmt = d => { const t = new Date(d); return isNaN(t) ? d : t.toLocaleDateString(undefined, PAGE_DATE_STYLE); };
-  const get = f => fetch(u(f)).then(r => r.json());
+  const get = async f => {
+    try {
+      return await window.rbaFetchJson(u(f));
+    } catch (error) {
+      window.rbaShowError(document.getElementById("page-root"));
+      return null;
+    }
+  };
 
   window.renderRoadmap = async function () {
     const d = await get(PAGE_ROADMAP_FILE);
+    if (!d) return;
     document.getElementById("page-root").innerHTML = `<div class="wrap">
       <div class="hero" style="text-align:left">
         <p class="section-label">Roadmap</p>
@@ -38,6 +46,7 @@ const PAGE_DATE_STYLE   = { year: "numeric", month: "short", day: "numeric" }; /
 
   window.renderDevlog = async function () {
     const d = await get(PAGE_DEVLOG_FILE);
+    if (!d) return;
     document.getElementById("page-root").innerHTML = `<div class="wrap">
       <div class="hero" style="text-align:left">
         <p class="section-label">Devlog</p>
@@ -59,6 +68,7 @@ const PAGE_DATE_STYLE   = { year: "numeric", month: "short", day: "numeric" }; /
 
   window.renderCredits = async function () {
     const d = await get(PAGE_CREDITS_FILE);
+    if (!d) return;
 
     const report = C.REPORT_SHOW ? `
       <div class="panel" id="report" style="border-color:rgba(224,178,92,.35);margin-top:16px">

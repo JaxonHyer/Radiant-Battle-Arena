@@ -70,6 +70,7 @@ Behavioural notes from the first session. These matter.
 ├── README.md                    ← game overview for repo visitors (NOT config docs)
 ├── LICENSE                      ← CC BY-SA 4.0
 ├── .nojekyll                    ← stops GitHub Pages running Jekyll
+├── robots.txt / sitemap.xml     ← search-engine discovery
 ├── GlobalSiteConfig.js          ← site-wide config, loaded by every page
 │
 ├── index.html                   ← home
@@ -155,6 +156,8 @@ One line differs between Order pages. Same pattern for the three OS pages (`THIS
 ### Shell contract
 
 `js/shell.js` injects the header, nav and footer into every page and exposes **`window.rbaRefresh()`**. Any renderer that injects markup **must call `window.rbaRefresh()` when finished**, or spoiler blurs and scroll-reveal animations won't bind to the new DOM.
+
+It also exposes **`window.rbaFetchJson()`** and **`window.rbaShowError()`**. JSON-driven pages should use these so failed requests produce a retryable error rather than a blank page. The shell injects canonical, Open Graph, Twitter, theme-colour, and optional favicon metadata from the page description and global config.
 
 ### Styling
 
@@ -387,14 +390,14 @@ Second person, direct, no marketing hype. Short sentences. The developer's own c
 
 ### Blocking before public sharing
 
-1. **`assets/logo.png` does not exist.** The developer is still polishing it. The hero safely falls back to text. Once supplied, also create a favicon and social-sharing image, then set `SITE_FAVICON` and `SITE_SOCIAL_IMAGE`.
+1. **`assets/logo.png` does not exist.** The developer is still polishing it. `SITE_LOGO_PNG` is intentionally empty so the browser does not request a missing file. Once supplied, set it to `assets/logo.png`, create a favicon and social-sharing image, then set `SITE_FAVICON` and `SITE_SOCIAL_IMAGE`.
 
 ### Waiting on the developer
 
 2. **Gameplay/Motion Matching clip** — `GAMEPLAY_MOTION_MEDIA_URL` in `js/gameplay.js` is an empty configurable placeholder. Prefer the developer's own project capture over copied Epic documentation media.
 3. **The Parshendi FBX** — `data/assets.json` points at the folder `assets/characters/Parshendi/` with `usePreview: false`. Needs a real packaged file and a size.
 4. **GLB logo** — `SITE_LOGO_GLB_ON` is `false`. Wired to lazy-load `model-viewer` on desktop ≥900px with the PNG as fallback. Suggested budget 5 MB (GitHub hard-caps files at 100 MB).
-5. **Custom domain** — undecided. No config change needed if adopted.
+5. **Custom domain** — undecided. If adopted, update `SITE_CANONICAL_BASE`, `sitemap.xml`, and the sitemap URL in `robots.txt`; runtime path detection needs no change.
 6. **Download URLs** — all three point at GitHub Releases `latest` and all have `operatingSystemReleased: false`.
 7. **System requirements** — all `"TBD"`.
 8. **Real devlog history** — sample entries were removed from `data/devlog.json`; the page shows an honest empty state until verified Diversion history is supplied.
@@ -480,9 +483,10 @@ for f in glob.glob('data/**/*.json', recursive=True):
 
 # 3. Serve and check every route
 python3 -m http.server 8000 &
-for p in / /StormlightArchiveLore/ /Windrunner/ /Skybreaker/ /Quiz/ \
+for p in / /Gameplay/ /StormlightArchiveLore/ /Windrunner/ /Skybreaker/ /Quiz/ \
          /Download/ /Download/windows/ /Download/mac/ /Download/linux/ \
-         /Download/supported/ /Assets/ /Roadmap/ /Devlog/ /Credits/; do
+         /Download/supported/ /Assets/ /Roadmap/ /Devlog/ /Credits/ \
+         /404.html /robots.txt /sitemap.xml; do
   echo "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8000$p)  $p"
 done
 ```

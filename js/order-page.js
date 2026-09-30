@@ -153,10 +153,17 @@ function gameplayHtml(order, shared) {
 
 async function renderOrderPage(orderId) {
   const mount = document.getElementById("order-root");
-  const [order, shared] = await Promise.all([
-    fetch(u(ORDER_DATA_DIR + orderId + ".json")).then(r => r.json()),
-    ORDER_SHOW_SHARED ? fetch(u(ORDER_SHARED_FILE)).then(r => r.json()) : Promise.resolve(null)
-  ]);
+  let order;
+  let shared;
+  try {
+    [order, shared] = await Promise.all([
+      window.rbaFetchJson(u(ORDER_DATA_DIR + orderId + ".json")),
+      ORDER_SHOW_SHARED ? window.rbaFetchJson(u(ORDER_SHARED_FILE)) : Promise.resolve(null)
+    ]);
+  } catch (error) {
+    window.rbaShowError(mount);
+    return;
+  }
 
   document.documentElement.style.setProperty("--accent", order.accent);
   document.title = `${order.name} · ${C.SITE_TITLE}`;
@@ -179,25 +186,44 @@ async function renderOrderPage(orderId) {
         <button class="spoiler-toggle" data-spoiler-toggle style="margin-left:8px"></button>
       </p>
 
-      <div class="tabs" role="tablist">
-        <button role="tab" data-tab="lore" aria-selected="false">${ORDER_TAB_LABELS.lore}</button>
-        <button role="tab" data-tab="gameplay" aria-selected="false">${ORDER_TAB_LABELS.gameplay}</button>
+      <div class="tabs" role="tablist" aria-label="${esc(order.name)} page sections">
+        <button id="tab-lore" role="tab" data-tab="lore" aria-controls="panel-lore" aria-selected="false">${ORDER_TAB_LABELS.lore}</button>
+        <button id="tab-gameplay" role="tab" data-tab="gameplay" aria-controls="panel-gameplay" aria-selected="false">${ORDER_TAB_LABELS.gameplay}</button>
       </div>
 
-      <div class="tabpanel" data-panel="lore" hidden>${loreHtml(order)}</div>
-      <div class="tabpanel" data-panel="gameplay" hidden>${gameplayHtml(order, shared)}</div>
+      <div id="panel-lore" class="tabpanel" role="tabpanel" aria-labelledby="tab-lore" data-panel="lore" tabindex="0" hidden>${loreHtml(order)}</div>
+      <div id="panel-gameplay" class="tabpanel" role="tabpanel" aria-labelledby="tab-gameplay" data-panel="gameplay" tabindex="0" hidden>${gameplayHtml(order, shared)}</div>
     </div>
   `;
 
   // Tabs
   const saved = ORDER_REMEMBER_TAB ? localStorage.getItem("rba-order-tab") : null;
   const start = saved === "gameplay" || saved === "lore" ? saved : ORDER_DEFAULT_TAB;
-  const select = name => {
-    mount.querySelectorAll("[role=tab]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
-    mount.querySelectorAll(".tabpanel").forEach(p => { p.hidden = p.dataset.panel !== name; });
+  const tabs = [...mount.querySelectorAll("[role=tab]")];
+  const select = (name, moveFocus = false) => {
+    tabs.forEach(button => {
+      const selected = button.dataset.tab === name;
+      button.setAttribute("aria-selected", String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      if (selected && moveFocus) button.focus();
+    });
+    mount.querySelectorAll(".tabpanel").forEach(panel => { panel.hidden = panel.dataset.panel !== name; });
     if (ORDER_REMEMBER_TAB) localStorage.setItem("rba-order-tab", name);
   };
-  mount.querySelectorAll("[role=tab]").forEach(b => b.addEventListener("click", () => select(b.dataset.tab)));
+  tabs.forEach((button, index) => {
+    button.addEventListener("click", () => select(button.dataset.tab));
+    button.addEventListener("keydown", event => {
+      let next = null;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % tabs.length;
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (index - 1 + tabs.length) % tabs.length;
+      if (event.key === "Home") next = 0;
+      if (event.key === "End") next = tabs.length - 1;
+      if (next !== null) {
+        event.preventDefault();
+        select(tabs[next].dataset.tab, true);
+      }
+    });
+  });
   select(start);
 
   wireControls(mount);

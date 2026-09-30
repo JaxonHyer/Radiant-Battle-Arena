@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jaxonhyer.github.io/Radiant-Battle-Arena/sitemap.xml

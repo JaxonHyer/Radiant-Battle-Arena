@@ -6,7 +6,8 @@
 const SITE_TITLE          = "Radiant: Battle Arena";              // Game name, used in <title> and header
 const SITE_TAGLINE        = "Fight, fly, and survive as a Knight Radiant — solo or in local split-screen.";
 const SITE_DESCRIPTION    = "A solo or two-player local split-screen Stormlight Archive fan game with Adventure and Arena modes, built in Unreal Engine 5.8.";
-const SITE_LOGO_PNG       = "assets/logo.png";                    // 2D logo (PNG/JPG). Path is relative to site root
+const SITE_CANONICAL_BASE = "https://jaxonhyer.github.io/Radiant-Battle-Arena/"; // Public site URL; keep trailing slash
+const SITE_LOGO_PNG       = "";                                   // Set to "assets/logo.png" when the final logo is added
 const SITE_LOGO_GLB       = "assets/logo.glb";                    // 3D logo. Set to "" to disable entirely
 const SITE_LOGO_GLB_ON    = false;                                // true = load 3D logo on desktop, false = PNG only
 const SITE_LOGO_GLB_MAXMB = 5;                                    // Size budget reminder for the GLB (not enforced)
@@ -119,7 +120,8 @@ function siteUrl(path) {
 }
 
 window.RBA_CONFIG = {
-  SITE_TITLE, SITE_TAGLINE, SITE_DESCRIPTION, SITE_LOGO_PNG, SITE_LOGO_GLB, SITE_LOGO_GLB_ON, SITE_LOGO_GLB_MAXMB,
+  SITE_TITLE, SITE_TAGLINE, SITE_DESCRIPTION, SITE_CANONICAL_BASE,
+  SITE_LOGO_PNG, SITE_LOGO_GLB, SITE_LOGO_GLB_ON, SITE_LOGO_GLB_MAXMB,
   SITE_FAVICON, SITE_SOCIAL_IMAGE, SITE_ENGINE, SITE_SPOILER_LIMIT, SITE_SPOILERS_ON, SITE_BASE,
   DOWNLOADS, SYSTEM_REQUIREMENTS, ORDERS, NAV_LINKS,
   LEGAL_DISCLAIMER, LEGAL_LICENSE, siteUrl,

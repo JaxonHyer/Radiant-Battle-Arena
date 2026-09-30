@@ -37,6 +37,11 @@ body {
 
 img { max-width: 100%; display: block; }
 a { color: var(--storm); }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible {
+  outline: 3px solid var(--storm);
+  outline-offset: 3px;
+}
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
 
@@ -148,6 +153,8 @@ h3 { font-family: var(--font-display); font-size: 1.15rem; margin: 26px 0 8px; l
   border: 1px solid rgba(224,178,92,.35); border-radius: 10px;
 }
 .status-banner strong { color: var(--warn); }
+.load-error { margin-top: 56px; border-color: rgba(224,178,92,.4); }
+.load-error h1 { margin-top: 0; font-family: var(--font-display); }
 .motion-grid { align-items: center; }
 .feature-media, .media-placeholder { width: 100%; border-radius: var(--radius); border: 1px solid var(--line); }
 .media-placeholder {
@@ -194,7 +201,7 @@ body:not(.spoilers-shown) .spoiler {
   cursor: pointer;
 }
 body:not(.spoilers-shown) .spoiler::after {
-  content: "Spoiler — click to reveal";
+  content: "Spoiler — activate to reveal";
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
   filter: blur(0);
@@ -249,6 +256,7 @@ body:not(.spoilers-shown) .spoiler::after {
 .tabs button:hover { color: var(--text); }
 .tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
 .tabpanel[hidden] { display: none; }
+.tabpanel:focus { outline-offset: 8px; }
 
 /* ---------- Ability list ---------- */
 .ability { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; background: var(--panel); }
