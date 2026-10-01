@@ -105,7 +105,11 @@ const QUIZ_SHOW_METER = true;             // Show the Windrunner/Skybreaker spli
 
   document.addEventListener("DOMContentLoaded", async () => {
     root = document.getElementById("quiz-root");
-    bank = await fetch(u(QUIZ_FILE)).then(r => r.json());
-    start();
+    try {
+      bank = await window.rbaFetchJson(u(QUIZ_FILE));
+      start();
+    } catch (error) {
+      window.rbaShowError(root);
+    }
   });
 })();

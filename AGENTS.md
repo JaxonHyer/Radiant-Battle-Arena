@@ -68,8 +68,9 @@ Behavioural notes from the first session. These matter.
 ├── AGENTS.md                    ← you are here
 ├── CONFIG.md                    ← exhaustive configuration reference
 ├── README.md                    ← game overview for repo visitors (NOT config docs)
-├── LICENSE                      ← CC BY-SA 4.0
+├── LICENSE.md                   ← CC BY-SA 4.0
 ├── .nojekyll                    ← stops GitHub Pages running Jekyll
+├── robots.txt / sitemap.xml     ← search-engine discovery
 ├── GlobalSiteConfig.js          ← site-wide config, loaded by every page
 │
 ├── index.html                   ← home
@@ -156,6 +157,8 @@ One line differs between Order pages. Same pattern for the three OS pages (`THIS
 
 `js/shell.js` injects the header, nav and footer into every page and exposes **`window.rbaRefresh()`**. Any renderer that injects markup **must call `window.rbaRefresh()` when finished**, or spoiler blurs and scroll-reveal animations won't bind to the new DOM.
 
+It also exposes **`window.rbaFetchJson()`** and **`window.rbaShowError()`**. JSON-driven pages should use these so failed requests produce a retryable error rather than a blank page. The shell injects canonical, Open Graph, Twitter, theme-colour, and optional favicon metadata from the page description and global config.
+
 ### Styling
 
 Single stylesheet, CSS custom properties at `:root`. Accent colour is swapped per Order at runtime via `--accent`. Dark sci-fantasy: near-black background, Stormlight cyan-blue (`--storm: #6fb4ff`), Windrunner blue (`#4f8cff`), Skybreaker smokestone violet-grey (`#c9c4de`), Cinzel-ish display serif for headings, sans for body.
@@ -186,7 +189,7 @@ Every one of these was explicitly chosen by the developer. **Do not silently rev
 | OS detect failure | Redirect to **`Download/supported/`** listing every OS with links — do **not** guess a default |
 | Download config | Per-OS `downloadFromSite` (true = GitHub direct, false = Drive/host page) and `operatingSystemReleased` (false = show In-Development page) |
 | System requirements | Listed as **TBD** |
-| Devlog | **Hand-written** from Diversion. Fields: `date`, `commitTitle`, `version`, `branch`, `operatingSystemsUpdated[]`. **No Diversion links** — they require an account |
+| Devlog | Verified history copied from Diversion. Fields: `date`, `diversionCommit`, `author`, `branch`, `commitTitle`, `group`; optional `version` and `operatingSystemsUpdated[]`. **No Diversion links** — they require an account |
 | Roadmap | Yes, JSON-driven |
 | Credits | JSON-configurable CC-BY asset list, fan-game disclaimer, **must mention Unreal Engine 5.8** |
 | Controls display | **Inline SVG keyboard + controller highlighter** (developer had no art for it) |
@@ -324,7 +327,7 @@ Coppermind also notes that direct book quotations on their pages are fair-use re
 
 ### Repo licence conflict
 
-`LICENSE` is **CC BY-SA 4.0**, which is incompatible with NC-ND quoted material. Resolved by `LEGAL_LICENSE` in the config, which states the CC BY-SA grant covers **original content only** and excludes quoted material. Keep that carve-out.
+`LICENSE.md` is **CC BY-SA 4.0**, which is incompatible with NC-ND quoted material. Resolved by `LEGAL_LICENSE` in the config, which states the CC BY-SA grant covers **original content only** and excludes quoted material. Keep that carve-out.
 
 ### Required on the site
 
@@ -387,23 +390,22 @@ Second person, direct, no marketing hype. Short sentences. The developer's own c
 
 ### Blocking before public sharing
 
-1. **`assets/logo.png` does not exist.** The developer is still polishing it. The hero safely falls back to text. Once supplied, also create a favicon and social-sharing image, then set `SITE_FAVICON` and `SITE_SOCIAL_IMAGE`.
+1. **`assets/logo.png` does not exist.** The developer is still polishing it. `SITE_LOGO_PNG` is intentionally empty so the browser does not request a missing file. Once supplied, set it to `assets/logo.png`, create a favicon and social-sharing image, then set `SITE_FAVICON` and `SITE_SOCIAL_IMAGE`.
 
 ### Waiting on the developer
 
 2. **Gameplay/Motion Matching clip** — `GAMEPLAY_MOTION_MEDIA_URL` in `js/gameplay.js` is an empty configurable placeholder. Prefer the developer's own project capture over copied Epic documentation media.
 3. **The Parshendi FBX** — `data/assets.json` points at the folder `assets/characters/Parshendi/` with `usePreview: false`. Needs a real packaged file and a size.
 4. **GLB logo** — `SITE_LOGO_GLB_ON` is `false`. Wired to lazy-load `model-viewer` on desktop ≥900px with the PNG as fallback. Suggested budget 5 MB (GitHub hard-caps files at 100 MB).
-5. **Custom domain** — undecided. No config change needed if adopted.
+5. **Custom domain** — undecided. If adopted, update `SITE_CANONICAL_BASE`, `sitemap.xml`, and the sitemap URL in `robots.txt`; runtime path detection needs no change.
 6. **Download URLs** — all three point at GitHub Releases `latest` and all have `operatingSystemReleased: false`.
 7. **System requirements** — all `"TBD"`.
-8. **Real devlog history** — sample entries were removed from `data/devlog.json`; the page shows an honest empty state until verified Diversion history is supplied.
 
 ### Implemented but still needs device review
 
-9. **Mobile navigation.** A keyboard-accessible hamburger menu now replaces the wrapped desktop nav below 900px. Test it on the developer's phone.
-10. **Social metadata.** Open Graph/Twitter metadata is injected by `shell.js`; image metadata remains disabled until final logo artwork is supplied.
-11. **404 page.** Added at `/404.html`; verify GitHub Pages serves it as expected.
+8. **Mobile navigation.** A keyboard-accessible hamburger menu now replaces the wrapped desktop nav below 900px. Test it on the developer's phone.
+9. **Social metadata.** Open Graph/Twitter metadata is injected by `shell.js`; image metadata remains disabled until final logo artwork is supplied.
+10. **404 page.** Added at `/404.html`; verify GitHub Pages serves it as expected.
 
 ---
 
@@ -480,9 +482,10 @@ for f in glob.glob('data/**/*.json', recursive=True):
 
 # 3. Serve and check every route
 python3 -m http.server 8000 &
-for p in / /StormlightArchiveLore/ /Windrunner/ /Skybreaker/ /Quiz/ \
+for p in / /Gameplay/ /StormlightArchiveLore/ /Windrunner/ /Skybreaker/ /Quiz/ \
          /Download/ /Download/windows/ /Download/mac/ /Download/linux/ \
-         /Download/supported/ /Assets/ /Roadmap/ /Devlog/ /Credits/; do
+         /Download/supported/ /Assets/ /Roadmap/ /Devlog/ /Credits/ \
+         /404.html /robots.txt /sitemap.xml; do
   echo "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8000$p)  $p"
 done
 ```

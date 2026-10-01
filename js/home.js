@@ -19,7 +19,7 @@ const HOME_ORDER_SUBTITLE = surges => surges.join(" · "); // How Order cards la
     document.getElementById("engine-name").textContent = C.SITE_ENGINE;
 
     // Logo: PNG always, GLB only as an opt-in desktop upgrade.
-    if (HOME_SHOW_LOGO) {
+    if (HOME_SHOW_LOGO && C.SITE_LOGO_PNG) {
       const slot = document.getElementById("hero-logo");
       slot.innerHTML = `<img class="hero-logo" src="${u(C.SITE_LOGO_PNG)}" alt="${C.SITE_TITLE}"
                              onerror="this.remove()">`;
@@ -38,11 +38,16 @@ const HOME_ORDER_SUBTITLE = surges => surges.join(" · "); // How Order cards la
     // Order cards — driven entirely by the ORDERS list in GlobalSiteConfig.js
     const grid = document.getElementById("order-grid");
     Promise.all(C.ORDERS.filter(o => o.released).map(o =>
-      fetch(u("data/orders/" + o.id + ".json")).then(r => r.json()).catch(() => null)
+      window.rbaFetchJson(u("data/orders/" + o.id + ".json")).catch(() => null)
     )).then(list => {
-      grid.innerHTML = list.filter(Boolean).map(o => `
-        <a class="order-card" href="${u(o.name + "/index.html")}">
-          <img src="${u(o.glyph)}" alt="">
+      const orders = list.filter(Boolean);
+      if (!orders.length) {
+        grid.innerHTML = `<div class="panel load-error" role="alert"><p class="lede">Order details could not be loaded. Try refreshing the page.</p></div>`;
+        return;
+      }
+      grid.innerHTML = orders.map(o => `
+        <a class="order-card" href="${u(C.ORDERS.find(item => item.id === o.id).folder + "/index.html")}">
+          <img src="${u(o.glyph)}" alt="" width="110" height="110" loading="lazy">
           <h3>${o.name}</h3>
           <p class="surges">${HOME_ORDER_SUBTITLE(o.surges)}</p>
           <p class="lede" style="margin-top:10px;font-style:italic">${o.tagline}</p>

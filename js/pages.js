@@ -5,8 +5,11 @@
 const PAGE_ROADMAP_FILE = "data/roadmap.json";
 const PAGE_DEVLOG_FILE  = "data/devlog.json";
 const PAGE_CREDITS_FILE = "data/credits.json";
-const PAGE_DEVLOG_LIMIT = 50;     // Max devlog entries rendered
-const PAGE_DATE_STYLE   = { year: "numeric", month: "short", day: "numeric" }; // Date formatting
+const PAGE_DEVLOG_LIMIT = 100;    // Max devlog entries rendered
+const PAGE_DATE_STYLE   = {        // Diversion timestamps are recorded in the project's Boise timezone
+  year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit",
+  timeZone: "America/Boise", timeZoneName: "short"
+};
 
 /* ========================================================================== */
 
@@ -15,10 +18,44 @@ const PAGE_DATE_STYLE   = { year: "numeric", month: "short", day: "numeric" }; /
   const u = C.siteUrl;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const fmt = d => { const t = new Date(d); return isNaN(t) ? d : t.toLocaleDateString(undefined, PAGE_DATE_STYLE); };
-  const get = f => fetch(u(f)).then(r => r.json());
+  const get = async f => {
+    try {
+      return await window.rbaFetchJson(u(f));
+    } catch (error) {
+      window.rbaShowError(document.getElementById("page-root"));
+      return null;
+    }
+  };
+
+  function devlogEntriesHtml(entries) {
+    let previousGroup = "";
+    return entries.slice(0, PAGE_DEVLOG_LIMIT).map(entry => {
+      const groupHeading = entry.group && entry.group !== previousGroup
+        ? `<h2 class="devlog-group">${esc(entry.group)}</h2>`
+        : "";
+      previousGroup = entry.group || previousGroup;
+
+      const metadata = [
+        fmt(entry.date),
+        entry.author,
+        entry.diversionCommit,
+        entry.branch ? `branch ${entry.branch}` : "",
+        entry.version ? `v${entry.version}` : ""
+      ].filter(Boolean).map(esc).join(" · ");
+      const platforms = (entry.operatingSystemsUpdated || [])
+        .map(os => `<span class="tag">${esc(os)}</span>`).join("");
+
+      return `${groupHeading}<article class="devlog-entry reveal">
+        <h3>${esc(entry.commitTitle)}</h3>
+        <p class="meta">${metadata}</p>
+        ${platforms ? `<div>${platforms}</div>` : ""}
+      </article>`;
+    }).join("");
+  }
 
   window.renderRoadmap = async function () {
     const d = await get(PAGE_ROADMAP_FILE);
+    if (!d) return;
     document.getElementById("page-root").innerHTML = `<div class="wrap">
       <div class="hero" style="text-align:left">
         <p class="section-label">Roadmap</p>
@@ -38,20 +75,15 @@ const PAGE_DATE_STYLE   = { year: "numeric", month: "short", day: "numeric" }; /
 
   window.renderDevlog = async function () {
     const d = await get(PAGE_DEVLOG_FILE);
+    if (!d) return;
     document.getElementById("page-root").innerHTML = `<div class="wrap">
       <div class="hero" style="text-align:left">
         <p class="section-label">Devlog</p>
         <h1 style="text-align:left">Commit log</h1>
-        <p class="lede">Hand-written from Diversion.</p>
+        <p class="lede">${d.entries.length} verified commits imported from Diversion. Timestamps are shown in Mountain Time.</p>
       </div>
       <div class="grid">
-        ${d.entries.length ? d.entries.slice(0, PAGE_DEVLOG_LIMIT).map(e => `
-          <div class="devlog-entry reveal">
-            <h3>${esc(e.commitTitle)}</h3>
-            <p class="meta">${esc(fmt(e.date))} · v${esc(e.version)} · branch <code>${esc(e.branch)}</code></p>
-            <div>${(e.operatingSystemsUpdated || []).map(o => `<span class="tag">${esc(o)}</span>`).join("")
-              || `<span class="tag">No platform build</span>`}</div>
-          </div>`).join("") : `<div class="panel"><h3 style="margin-top:0">No verified entries yet</h3><p class="lede">Development history will be added here from Diversion.</p></div>`}
+        ${d.entries.length ? devlogEntriesHtml(d.entries) : `<div class="panel"><h3 style="margin-top:0">No verified entries yet</h3><p class="lede">Development history will be added here from Diversion.</p></div>`}
       </div>
     </div>`;
     window.rbaRefresh();
@@ -59,6 +91,7 @@ const PAGE_DATE_STYLE   = { year: "numeric", month: "short", day: "numeric" }; /
 
   window.renderCredits = async function () {
     const d = await get(PAGE_CREDITS_FILE);
+    if (!d) return;
 
     const report = C.REPORT_SHOW ? `
       <div class="panel" id="report" style="border-color:rgba(224,178,92,.35);margin-top:16px">

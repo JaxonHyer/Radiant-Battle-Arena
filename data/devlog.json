@@ -1,4 +1,414 @@
 {
-  "note": "Hand-written from Diversion. Diversion links are account-walled, so no URLs belong here. Add verified entries newest first.",
-  "entries": []
+  "note": "Verified Diversion history supplied by the developer. Times are recorded in America/Boise. Diversion commit numbering restarted after the project migration, so IDs can repeat across groups.",
+  "migrationNote": "Project migration to Unreal Engine 5.8.3",
+  "entries": [
+    {
+      "date": "2026-09-25T14:41:00-06:00",
+      "diversionCommit": "dv.commit.10",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Fixed simple reference error in BP_RadiantCharacterCombatComponent (edited parent to do so too)",
+      "group": "After project migration to Unreal Engine 5.8.3"
+    },
+    {
+      "date": "2026-09-25T12:50:00-06:00",
+      "diversionCommit": "dv.commit.9",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Worked on README.md a bit and added .cursor/ to .dvignore",
+      "group": "After project migration to Unreal Engine 5.8.3"
+    },
+    {
+      "date": "2026-09-25T10:49:00-06:00",
+      "diversionCommit": "dv.commit.8",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "cleaned up MixamoToUE folder",
+      "group": "After project migration to Unreal Engine 5.8.3"
+    },
+    {
+      "date": "2026-09-24T08:54:00-06:00",
+      "diversionCommit": "dv.commit.7",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Created README.md at root deleted old corrupted Pucn Animations",
+      "group": "After project migration to Unreal Engine 5.8.3"
+    },
+    {
+      "date": "2026-09-23T21:50:00-06:00",
+      "diversionCommit": "dv.commit.6",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Imported Retarget assets to retarget from Mixamo X-Bot to UE5 Mannequin and edited skeleton for UEFN",
+      "group": "After project migration to Unreal Engine 5.8.3"
+    },
+    {
+      "date": "2026-09-23T17:33:00-06:00",
+      "diversionCommit": "dv.commit.5",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added some more Megaplant Trees.",
+      "group": "After project migration to Unreal Engine 5.8.3"
+    },
+    {
+      "date": "2026-09-22T16:46:00-06:00",
+      "diversionCommit": "dv.commit.4",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Fix Punch anim inport and import Megaplants",
+      "group": "After project migration to Unreal Engine 5.8.3"
+    },
+    {
+      "date": "2026-09-22T12:38:00-06:00",
+      "diversionCommit": "dv.commit.3",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "import VFX and Punch Anims",
+      "group": "After project migration to Unreal Engine 5.8.3"
+    },
+    {
+      "date": "2026-09-22T09:07:00-06:00",
+      "diversionCommit": "dv.commit.2",
+      "author": "Jaxon Hyer",
+      "branch": "",
+      "commitTitle": "Upgraded Radiant to 5.8.2 and rebuilt it in the GASP Project Created ALI_LashingLayer",
+      "group": "After project migration to Unreal Engine 5.8.3"
+    },
+    {
+      "date": "2026-09-16T18:22:00-06:00",
+      "diversionCommit": "dv.commit.44",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Worked on CombatComponents and added some sockets to SK_UEFN_Mannequin for weapons",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-09-12T18:03:00-06:00",
+      "diversionCommit": "dv.commit.43",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "did some functions in BP_CharacterCombatComponent",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-09-11T16:29:00-06:00",
+      "diversionCommit": "dv.commit.42",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Reorganized folders and created FC_ChargeAttackDamageMultiplier",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-09-10T17:29:00-06:00",
+      "diversionCommit": "dv.commit.41",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Worked on CharacterCombatComponent and RadiantCombatComponent as well as finished both combat BPI functions",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-09-09T15:44:00-06:00",
+      "diversionCommit": "dv.commit.40",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added Begin Play logic to BP_CharacterCombatComponent and BP_RadiantCombatComponent. Attached BP_RadiantCombatComponent and BP_ShardplateComponent to SandboxCharacter_CMC Cleaned up Sprint graph in SandboxCharacter_CMC",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-09-09T12:11:00-06:00",
+      "diversionCommit": "dv.commit.39",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Modified GamePlay tags",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-09-08T22:15:00-06:00",
+      "diversionCommit": "dv.commit.38",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added FallDamageComponent, ShardplateComponent and made BP_CombatComponent Class abstract",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-09-07T18:09:00-06:00",
+      "diversionCommit": "dv.commit.37",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Started working on the CombatSystem",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-09-07T17:03:00-06:00",
+      "diversionCommit": "dv.commit.36",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added Animations and Components folder in RadiantCharacter",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-31T19:26:00-06:00",
+      "diversionCommit": "dv.commit.35",
+      "author": "Hudson Wasleski",
+      "branch": "main",
+      "commitTitle": "Generating forest I think (My engine crashed while doing this so idk if everything is working)",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-30T19:33:00-06:00",
+      "diversionCommit": "dv.commit.34",
+      "author": "Hudson Wasleski",
+      "branch": "main",
+      "commitTitle": "Models from video (No trees because I couldn't get to the tree model because my webbrowser was blocking it)",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-30T19:10:00-06:00",
+      "diversionCommit": "dv.commit.33",
+      "author": "Hudson Wasleski",
+      "branch": "main",
+      "commitTitle": "First part of the forest had to restart pc to do second part",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-30T17:54:00-06:00",
+      "diversionCommit": "dv.commit.32",
+      "author": "Hudson Wasleski",
+      "branch": "main",
+      "commitTitle": "Flying logic to stop fast fly when not holding shift",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-30T13:18:00-06:00",
+      "diversionCommit": "dv.commit.31",
+      "author": "Hudson Wasleski",
+      "branch": "main",
+      "commitTitle": "Bp_stormlightcomponent variables",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-29T19:09:00-06:00",
+      "diversionCommit": "dv.commit.28",
+      "author": "Hudson Wasleski",
+      "branch": "main",
+      "commitTitle": "Split screen second player deletion code (change the debug key to right dpad i had to put it as 7 to test since controller was not connecting)",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-29T18:36:00-06:00",
+      "diversionCommit": "dv.commit.27",
+      "author": "Hudson Wasleski",
+      "branch": "main",
+      "commitTitle": "hudson joined",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-29T17:10:00-06:00",
+      "diversionCommit": "dv.commit.26",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added Camera changing logic for flying mode.",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-29T16:29:00-06:00",
+      "diversionCommit": "dv.commit.25",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Fixed flying mechanic",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-26T18:22:00-06:00",
+      "diversionCommit": "dv.commit.24",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "added BS_Fly and plugged it into the ABP need to polish ref system",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-24T20:42:00-06:00",
+      "diversionCommit": "dv.commit.23",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "refactored basic lashing (created BPC_BasicLashing) and moved stuff to RadiantCharacter folder",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-22T17:00:00-06:00",
+      "diversionCommit": "dv.commit.22",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added Input Actions and Mapping Contexts for RadiantCharacter",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-20T19:00:00-06:00",
+      "diversionCommit": "dv.commit.21",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added Hovering logic to the SandboxCharacter_CMC_ABP (GASP CMC ABP)",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-15T22:12:00-06:00",
+      "diversionCommit": "dv.commit.20",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "finished camera combat system lock",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-14T17:43:00-06:00",
+      "diversionCommit": "dv.commit.19",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Make it so that a jump triggers before Hovering starts. Polished ABP_Radiant ref catching system",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-13T22:20:00-06:00",
+      "diversionCommit": "dv.commit.18",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Fixed most Hover Locomotion problems (it was the character movement comp changing modes i think + some problems Update Partial Lashing was causin)",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-10T17:30:00-06:00",
+      "diversionCommit": "dv.commit.17",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Finished BP_CombatComponent basics",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-08-09T20:48:00-06:00",
+      "diversionCommit": "dv.commit.16",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Created basis for Combat System and Division system structs and enums",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-07-31T16:32:00-06:00",
+      "diversionCommit": "dv.commit.15",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "added variables for Camera rotation for combat/hover mode and exploring mode",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-07-25T17:11:00-06:00",
+      "diversionCommit": "dv.commit.14",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Worked on Lashing Deactivation error",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-07-25T16:47:00-06:00",
+      "diversionCommit": "dv.commit.13",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Finish Hovering Anims and restructure player character to KnightRadiant directory",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-07-01T21:04:00-06:00",
+      "diversionCommit": "dv.commit.12",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Add ABP_Hover and import Levitation anims",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-07-01T17:51:00-06:00",
+      "diversionCommit": "dv.commit.11",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added VInterp To logic to HandlePartialLashing",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-06-26T21:40:00-06:00",
+      "diversionCommit": "dv.commit.10",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Continued work on the BP_BasicLashing levitation locomotions",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-06-26T20:25:00-06:00",
+      "diversionCommit": "dv.commit.9",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Finish BP_StormlightComponent",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-06-20T16:30:00-06:00",
+      "diversionCommit": "dv.commit.8",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Worked on BP_StormlightComponent and BP_BasicLashing logic and event triggers",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-06-13T14:44:00-06:00",
+      "diversionCommit": "dv.commit.7",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Create Variables in BP_BasicLashing and create Gravitation/BasicLashing/ and Gravitation/_Shared/",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-06-13T14:22:00-06:00",
+      "diversionCommit": "dv.commit.6",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added BP_StormlightComponent UseSphere and CheckMaxStormlight functions.",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-06-12T12:53:00-06:00",
+      "diversionCommit": "dv.commit.5",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added Stormlight",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-06-12T12:36:00-06:00",
+      "diversionCommit": "dv.commit.4",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added Button Mapping",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-06-11T19:14:00-06:00",
+      "diversionCommit": "dv.commit.3",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Added empty Windrunner files",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-06-11T19:05:00-06:00",
+      "diversionCommit": "dv.commit.2",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Testing diversion commit capabilities",
+      "group": "Earlier project history"
+    },
+    {
+      "date": "2026-06-11T19:05:00-06:00",
+      "diversionCommit": "dv.commit.1",
+      "author": "Jaxon Hyer",
+      "branch": "main",
+      "commitTitle": "Initial commit",
+      "group": "Earlier project history"
+    }
+  ]
 }

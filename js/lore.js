@@ -20,7 +20,13 @@ const LORE_SHOW_LINKS = true;            // Show the "read more" external links 
 
   document.addEventListener("DOMContentLoaded", async () => {
     const root = document.getElementById("lore-root");
-    const d = await fetch(u(LORE_FILE)).then(r => r.json());
+    let d;
+    try {
+      d = await window.rbaFetchJson(u(LORE_FILE));
+    } catch (error) {
+      window.rbaShowError(root);
+      return;
+    }
     document.title = `${d.title} · ${C.SITE_TITLE}`;
 
     const toc = LORE_SHOW_TOC

@@ -11,7 +11,7 @@ Work top to bottom. Items marked **required** should be done before you share th
 | # | Task | File | Status |
 | --- | --- | --- | --- |
 | 1 | **Required.** Set a real takedown contact | `GlobalSiteConfig.js` → `REPORT_EMAIL` | ✅ set |
-| 2 | **Required.** Add the final logo image | `assets/logo.png` | ⬜ being polished |
+| 2 | **Required.** Add the final logo image, then set `SITE_LOGO_PNG` | `assets/logo.png` | ⬜ being polished |
 | 3 | Enable GitHub Pages on `gh-pages` / root | repo Settings → Pages | ⬜ |
 | 4 | Point download links at your release host | `GlobalSiteConfig.js` → `DOWNLOADS` | ⬜ |
 | 5 | Reveal a platform when you ship it | `operatingSystemReleased: true` | ⬜ |
@@ -49,7 +49,7 @@ const SITE_BASE_OVERRIDE = "/Radiant-Battle-Arena/";          // project subpath
 
 Without the trailing slash, paths concatenate into `...arenaindex.html`.
 
-**Custom domain:** add it under Settings → Pages, commit the `CNAME` file GitHub creates, and change nothing here.
+**Custom domain:** add it under Settings → Pages, commit the `CNAME` file GitHub creates, and update `SITE_CANONICAL_BASE`, every URL in `sitemap.xml`, and the sitemap URL in `robots.txt`. Path detection itself still needs no change.
 
 ---
 
@@ -64,8 +64,9 @@ The single file for site-wide values.
 | `SITE_TITLE` | Game name — used in the header, page titles, footer |
 | `SITE_TAGLINE` | One-line description under the hero title |
 | `SITE_ENGINE` | Engine credit in the footer and credits page |
-| `SITE_DESCRIPTION` | Default description used by social metadata when a page has no specific description |
-| `SITE_LOGO_PNG` | Hero logo path. If the file is missing, the image removes itself rather than showing a broken icon |
+| `SITE_DESCRIPTION` | Default description used when a page has no specific search/social description |
+| `SITE_CANONICAL_BASE` | Public site URL used for canonical and social metadata; keep the trailing slash |
+| `SITE_LOGO_PNG` | Hero logo path. It stays empty until the final logo is added, avoiding a failed image request |
 | `SITE_LOGO_GLB` | Optional 3D logo |
 | `SITE_LOGO_GLB_ON` | `true` loads the 3D logo on desktop only; PNG remains the fallback |
 | `SITE_LOGO_GLB_MAXMB` | Reminder budget, not enforced. GitHub caps files at 100 MB |
@@ -160,8 +161,12 @@ Every JS file opens with its tunables in the first ~10 lines.
 | `quiz.json` | 20 questions, scoring, results |
 | `assets.json` | Free downloads |
 | `roadmap.json` | Milestones — `status` is `done`, `active` or `planned` |
-| `devlog.json` | Hand-written entries: `date`, `commitTitle`, `version`, `branch`, `operatingSystemsUpdated[]` |
+| `devlog.json` | Diversion history: `date`, `diversionCommit`, `author`, `branch`, `commitTitle`, `group`; optional `version`, `operatingSystemsUpdated[]` |
 | `credits.json` | Attribution tables |
+
+### Devlog entries
+
+Diversion history uses ISO 8601 timestamps with the Boise UTC offset, for example `2026-09-25T14:41:00-06:00`. The renderer always displays them in `America/Boise`. Keep `diversionCommit` as Diversion shows it; IDs can repeat because numbering restarted after the UE 5.8.3 project migration. Use `group` to preserve that migration boundary. Do not add Diversion URLs because viewers would need an account.
 
 ### Quotes
 

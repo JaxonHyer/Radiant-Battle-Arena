@@ -40,8 +40,8 @@ const GAMEPLAY_MOTION_MEDIA_ALT = "Motion Matching traversal animation in Radian
   }
 
   async function renderGameplay() {
-    const data = await fetch(u(GAMEPLAY_DATA_FILE)).then(response => response.json());
     const root = document.getElementById("gameplay-root");
+    const data = await window.rbaFetchJson(u(GAMEPLAY_DATA_FILE));
 
     root.innerHTML = `<div class="wrap">
       <div class="hero page-hero">
@@ -94,5 +94,7 @@ const GAMEPLAY_MOTION_MEDIA_ALT = "Motion Matching traversal animation in Radian
     window.rbaRefresh();
   }
 
-  document.addEventListener("DOMContentLoaded", renderGameplay);
+  document.addEventListener("DOMContentLoaded", () => {
+    renderGameplay().catch(() => window.rbaShowError(document.getElementById("gameplay-root")));
+  });
 })();

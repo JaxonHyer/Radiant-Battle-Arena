@@ -16,6 +16,7 @@ const SHELL_FOOTER_LINKS  = [        // Extra links shown in the footer
 
 const CFG = window.RBA_CONFIG;
 const url = CFG.siteUrl;
+let spoilerDelegationBound = false;
 
 /** True when `href` points at the page currently being viewed. */
 function isCurrent(href) {
@@ -29,7 +30,7 @@ function buildNav() {
   CFG.NAV_LINKS.forEach(link => {
     if (link.orders) {
       CFG.ORDERS.filter(o => o.released).forEach(o => {
-        const glyph = SHELL_SHOW_GLYPHS ? `<img src="${url(o.glyph)}" alt="">` : "";
+        const glyph = SHELL_SHOW_GLYPHS ? `<img src="${url(o.glyph)}" alt="" width="17" height="17">` : "";
         items.push(`<a href="${url(o.folder + "/index.html")}">${glyph}${o.name}</a>`);
       });
     } else {
@@ -93,21 +94,44 @@ function renderShell() {
   document.addEventListener("click", event => {
     if (document.body.classList.contains("nav-open") && !event.target.closest(".site-header")) setOpen(false);
   });
-  matchMedia("(min-width: 901px)").addEventListener("change", event => { if (event.matches) setOpen(false); });
+  const desktopQuery = matchMedia("(min-width: 901px)");
+  const closeOnDesktop = event => { if (event.matches) setOpen(false); };
+  if (desktopQuery.addEventListener) desktopQuery.addEventListener("change", closeOnDesktop);
+  else desktopQuery.addListener(closeOnDesktop); // Older Safari
+}
+
+function getCanonicalUrl() {
+  const servedBase = new URL(CFG.SITE_BASE, location.origin).pathname;
+  const relativePath = document.title.startsWith("Page not found")
+    ? "404.html"
+    : (location.pathname.startsWith(servedBase) ? location.pathname.slice(servedBase.length) : "");
+  return new URL(relativePath || "index.html", CFG.SITE_CANONICAL_BASE).href;
 }
 
 function initMetadata() {
-  const description = document.querySelector('meta[name="description"]')?.content || CFG.SITE_DESCRIPTION;
+  let descriptionMeta = document.querySelector('meta[name="description"]');
+  if (!descriptionMeta) {
+    descriptionMeta = document.createElement("meta");
+    descriptionMeta.name = "description";
+    descriptionMeta.content = CFG.SITE_DESCRIPTION;
+    document.head.appendChild(descriptionMeta);
+  }
+  const description = descriptionMeta.content;
+  const canonicalUrl = getCanonicalUrl();
   const values = {
     "og:title": document.title,
     "og:description": description,
     "og:type": "website",
-    "og:url": location.href,
-    "twitter:card": CFG.SITE_SOCIAL_IMAGE ? "summary_large_image" : "summary"
+    "og:site_name": CFG.SITE_TITLE,
+    "og:url": canonicalUrl,
+    "twitter:card": CFG.SITE_SOCIAL_IMAGE ? "summary_large_image" : "summary",
+    "twitter:title": document.title,
+    "twitter:description": description
   };
   if (CFG.SITE_SOCIAL_IMAGE) {
-    values["og:image"] = url(CFG.SITE_SOCIAL_IMAGE);
-    values["twitter:image"] = url(CFG.SITE_SOCIAL_IMAGE);
+    const socialImage = new URL(CFG.SITE_SOCIAL_IMAGE, CFG.SITE_CANONICAL_BASE).href;
+    values["og:image"] = socialImage;
+    values["twitter:image"] = socialImage;
   }
   Object.entries(values).forEach(([name, content]) => {
     const property = name.startsWith("og:") ? "property" : "name";
@@ -116,6 +140,17 @@ function initMetadata() {
     meta.content = content;
     document.head.appendChild(meta);
   });
+
+  const canonical = document.createElement("link");
+  canonical.rel = "canonical";
+  canonical.href = canonicalUrl;
+  document.head.appendChild(canonical);
+
+  const theme = document.createElement("meta");
+  theme.name = "theme-color";
+  theme.content = "#05070c";
+  document.head.appendChild(theme);
+
   if (CFG.SITE_FAVICON) {
     const icon = document.createElement("link");
     icon.rel = "icon";
@@ -124,33 +159,77 @@ function initMetadata() {
   }
 }
 
+function syncSpoilers() {
+  const shownGlobally = document.body.classList.contains("spoilers-shown");
+
+  document.querySelectorAll("[data-spoiler-toggle]").forEach(btn => {
+    btn.textContent = shownGlobally
+      ? `Spoilers shown — hide anything past ${CFG.SITE_SPOILER_LIMIT}`
+      : `Spoilers hidden — reveal content past ${CFG.SITE_SPOILER_LIMIT}`;
+    btn.setAttribute("aria-pressed", String(shownGlobally));
+  });
+
+  document.querySelectorAll(".spoiler").forEach(block => {
+    const concealed = !shownGlobally && !block.classList.contains("revealed-one");
+    block.setAttribute("aria-expanded", String(!concealed));
+    if (concealed) {
+      block.tabIndex = 0;
+      block.setAttribute("aria-label", `Spoiler past ${CFG.SITE_SPOILER_LIMIT}. Press Enter to reveal.`);
+    } else {
+      block.removeAttribute("tabindex");
+      block.removeAttribute("aria-label");
+    }
+
+    block.querySelectorAll("a, button, input, select, textarea, [tabindex]").forEach(child => {
+      if (concealed) {
+        if (!child.hasAttribute("data-spoiler-tabindex")) {
+          child.setAttribute("data-spoiler-tabindex", child.getAttribute("tabindex") || "");
+        }
+        child.tabIndex = -1;
+      } else if (child.hasAttribute("data-spoiler-tabindex")) {
+        const oldValue = child.getAttribute("data-spoiler-tabindex");
+        if (oldValue) child.setAttribute("tabindex", oldValue);
+        else child.removeAttribute("tabindex");
+        child.removeAttribute("data-spoiler-tabindex");
+      }
+    });
+  });
+}
+
+function revealSpoiler(block) {
+  if (!block || document.body.classList.contains("spoilers-shown")) return;
+  block.classList.add("revealed-one");
+  block.focus({ preventScroll: true });
+  syncSpoilers();
+}
+
 function initSpoilers() {
   const stored = localStorage.getItem(SHELL_SPOILER_KEY);
   const on = stored === null ? CFG.SITE_SPOILERS_ON : stored === "true";
   document.body.classList.toggle("spoilers-shown", on);
 
   document.querySelectorAll("[data-spoiler-toggle]").forEach(btn => {
-    const sync = () => {
-      const shown = document.body.classList.contains("spoilers-shown");
-      btn.textContent = shown
-        ? `Spoilers shown — hide anything past ${CFG.SITE_SPOILER_LIMIT}`
-        : `Spoilers hidden — reveal content past ${CFG.SITE_SPOILER_LIMIT}`;
-    };
+    if (btn.dataset.spoilerBound) return;
+    btn.dataset.spoilerBound = "true";
     btn.addEventListener("click", () => {
       const now = !document.body.classList.contains("spoilers-shown");
       document.body.classList.toggle("spoilers-shown", now);
       localStorage.setItem(SHELL_SPOILER_KEY, String(now));
-      document.querySelectorAll("[data-spoiler-toggle]").forEach(b => b.dispatchEvent(new Event("sync")));
+      syncSpoilers();
     });
-    btn.addEventListener("sync", sync);
-    sync();
   });
 
-  // Click an individual blurred block to reveal just that one
-  document.addEventListener("click", e => {
-    const sp = e.target.closest(".spoiler");
-    if (sp && !document.body.classList.contains("spoilers-shown")) sp.classList.add("revealed-one");
-  });
+  if (!spoilerDelegationBound) {
+    spoilerDelegationBound = true;
+    document.addEventListener("click", event => revealSpoiler(event.target.closest(".spoiler")));
+    document.addEventListener("keydown", event => {
+      if ((event.key === "Enter" || event.key === " ") && event.target.matches(".spoiler")) {
+        event.preventDefault();
+        revealSpoiler(event.target);
+      }
+    });
+  }
+  syncSpoilers();
 }
 
 function initReveal() {
@@ -161,12 +240,29 @@ function initReveal() {
   document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 }
 
+/** Fetch JSON and fail loudly instead of leaving a page blank. */
+window.rbaFetchJson = async function (path) {
+  const response = await fetch(path);
+  if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
+  return response.json();
+};
+
+/** Render a consistent, user-recoverable loading error. */
+window.rbaShowError = function (mount) {
+  if (!mount) return;
+  mount.innerHTML = `<div class="wrap"><div class="panel load-error" role="alert">
+    <h1>Something went wrong</h1>
+    <p class="lede">This page's content could not be loaded. Check your connection and try again.</p>
+    <button class="btn" type="button" onclick="location.reload()">Try again</button>
+  </div></div>`;
+};
+
 /** Pages call this after they finish injecting their own markup. */
 window.rbaRefresh = function () { initSpoilers(); initReveal(); };
 
-document.title = document.title
-  ? `${document.title} · ${CFG.SITE_TITLE}`
-  : CFG.SITE_TITLE;
+document.title = !document.title || document.title === CFG.SITE_TITLE
+  ? CFG.SITE_TITLE
+  : `${document.title} · ${CFG.SITE_TITLE}`;
 initMetadata();
 
 document.addEventListener("DOMContentLoaded", () => {
