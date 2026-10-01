@@ -341,6 +341,11 @@ table.specs th { color: var(--muted); font-weight: 600; width: 40%; }
 .timeline li.done::before { background: var(--storm); }
 .meta { font-size: .78rem; color: var(--muted); letter-spacing: .04em; }
 
+.devlog-group {
+  margin: 28px 0 2px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--line); color: var(--storm);
+}
+.devlog-group:first-child { margin-top: 0; }
 .devlog-entry { border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; background: var(--panel); }
 .devlog-entry h3 { margin: 0 0 6px; font-size: 1.05rem; }
 .tag {

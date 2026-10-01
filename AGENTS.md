@@ -189,7 +189,7 @@ Every one of these was explicitly chosen by the developer. **Do not silently rev
 | OS detect failure | Redirect to **`Download/supported/`** listing every OS with links — do **not** guess a default |
 | Download config | Per-OS `downloadFromSite` (true = GitHub direct, false = Drive/host page) and `operatingSystemReleased` (false = show In-Development page) |
 | System requirements | Listed as **TBD** |
-| Devlog | **Hand-written** from Diversion. Fields: `date`, `commitTitle`, `version`, `branch`, `operatingSystemsUpdated[]`. **No Diversion links** — they require an account |
+| Devlog | Verified history copied from Diversion. Fields: `date`, `diversionCommit`, `author`, `branch`, `commitTitle`, `group`; optional `version` and `operatingSystemsUpdated[]`. **No Diversion links** — they require an account |
 | Roadmap | Yes, JSON-driven |
 | Credits | JSON-configurable CC-BY asset list, fan-game disclaimer, **must mention Unreal Engine 5.8** |
 | Controls display | **Inline SVG keyboard + controller highlighter** (developer had no art for it) |
@@ -400,13 +400,12 @@ Second person, direct, no marketing hype. Short sentences. The developer's own c
 5. **Custom domain** — undecided. If adopted, update `SITE_CANONICAL_BASE`, `sitemap.xml`, and the sitemap URL in `robots.txt`; runtime path detection needs no change.
 6. **Download URLs** — all three point at GitHub Releases `latest` and all have `operatingSystemReleased: false`.
 7. **System requirements** — all `"TBD"`.
-8. **Real devlog history** — sample entries were removed from `data/devlog.json`; the page shows an honest empty state until verified Diversion history is supplied.
 
 ### Implemented but still needs device review
 
-9. **Mobile navigation.** A keyboard-accessible hamburger menu now replaces the wrapped desktop nav below 900px. Test it on the developer's phone.
-10. **Social metadata.** Open Graph/Twitter metadata is injected by `shell.js`; image metadata remains disabled until final logo artwork is supplied.
-11. **404 page.** Added at `/404.html`; verify GitHub Pages serves it as expected.
+8. **Mobile navigation.** A keyboard-accessible hamburger menu now replaces the wrapped desktop nav below 900px. Test it on the developer's phone.
+9. **Social metadata.** Open Graph/Twitter metadata is injected by `shell.js`; image metadata remains disabled until final logo artwork is supplied.
+10. **404 page.** Added at `/404.html`; verify GitHub Pages serves it as expected.
 
 ---
 

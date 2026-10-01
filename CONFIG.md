@@ -161,8 +161,12 @@ Every JS file opens with its tunables in the first ~10 lines.
 | `quiz.json` | 20 questions, scoring, results |
 | `assets.json` | Free downloads |
 | `roadmap.json` | Milestones — `status` is `done`, `active` or `planned` |
-| `devlog.json` | Hand-written entries: `date`, `commitTitle`, `version`, `branch`, `operatingSystemsUpdated[]` |
+| `devlog.json` | Diversion history: `date`, `diversionCommit`, `author`, `branch`, `commitTitle`, `group`; optional `version`, `operatingSystemsUpdated[]` |
 | `credits.json` | Attribution tables |
+
+### Devlog entries
+
+Diversion history uses ISO 8601 timestamps with the Boise UTC offset, for example `2026-09-25T14:41:00-06:00`. The renderer always displays them in `America/Boise`. Keep `diversionCommit` as Diversion shows it; IDs can repeat because numbering restarted after the UE 5.8.3 project migration. Use `group` to preserve that migration boundary. Do not add Diversion URLs because viewers would need an account.
 
 ### Quotes
 
